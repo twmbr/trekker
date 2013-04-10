@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.28)
 # Database: trekker
-# Generation Time: 2013-04-03 18:16:00 +0000
+# Generation Time: 2013-04-10 20:17:26 +0000
 # ************************************************************
 
 
@@ -18,6 +18,26 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Dump of table trip
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `trip`;
+
+CREATE TABLE `trip` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `owner` int(11) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `start_location` varchar(255) NOT NULL DEFAULT '',
+  `end_location` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `trip_has_owner` (`owner`),
+  CONSTRAINT `trip_has_owner` FOREIGN KEY (`owner`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
 # Dump of table user
