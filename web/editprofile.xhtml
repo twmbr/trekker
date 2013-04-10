@@ -6,7 +6,7 @@
       xmlns:shiro="http://shiro.apache.org/tags">
     <h:head>
         <meta charset="utf-8" />
-        <title>trekker - Username's Profile</title>
+        <title>trekker - Edit Profile</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <h:outputStylesheet library="css" name="bootstrap.min.css" />
         <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
@@ -24,57 +24,57 @@
                     <ul class="nav">
                         <li><a href="index.xhtml">Home</a></li>
                         <li><a href="about.xhtml">About</a></li>
-                        <shiro:user><li class="active"><a href="profile.xhtml">Profile</a></li></shiro:user>
+                        <shiro:user><li><a href="profile.xhtml">Profile</a></li></shiro:user>
                         <li><a href="browse.xhtml">Browse Trips</a></li>
                     </ul>
                 </div>
             </div><!--/navbar-->
             
-            <h:messages globalOnly="true" escape="false" layout="table" />
-            
             <div class="row-fluid">
                 <div class="span9">
-                    <div class="row-fluid">
-                        <h1>Current &amp; Future Trips</h1>
-                        <a href="#">
-                            <div class="trip">
-                                <h1>Florida Summer 2013</h1>
-                                <p>06/01/13 - 06/15/13</p>
-                            </div>
-                        </a>
-
-                        <a href="#">
-                            <div class="trip spacer">
-                                <h1>Disneyland 2014</h1>
-                                <p>04/01/14 - 04/20/14</p>
-                            </div>
-                        </a>
-                    </div><!--/row-fluid current-->
-
-                    <div class="row-fluid spacer">
-                        <h1>Past Trips</h1>
+                    <h:form id="editprofile" class="form-horizontal">
+                        <h2>Edit account settings</h2>
                         
-                        <a href="#">
-                            <div class="trip">
-                                <h1>New England tour</h1>
-                                <p>09/25/12 - 10/05/12</p>
+                        <div class="control-group">
+                            <label class="control-label">Email address</label>
+                            <div class="controls">
+                                <h:inputText id="email" value="#{editInfo.user.email}" />
                             </div>
-                        </a>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Display name</label>
+                            <div class="controls">
+                                <h:inputText id="name" value="#{editInfo.user.name}" />
+                            </div>
+                        </div>
                         
-                        <a href="#">
-                            <div class="trip spacer">
-                                <h1>Midwest trip</h1>
-                                <p>08/02/10 - 08/10/10</p>
+                        <div class="control-group">
+                            <label class="control-label">Old Password</label>
+                            <div class="controls">
+                                <h:inputSecret id="oldPassword" value="#{editInfo.oldPassword}" />
                             </div>
-                        </a> 
-                    </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">New Password</label>
+                            <div class="controls">
+                                <h:inputSecret id="newPassword" value="#{editInfo.newPassword}" />
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <div class="controls">
+                                <h:commandButton value="Submit changes" class="btn btn-primary" ajax="false" action="#{editInfo.submit}" />
+                            </div>
+                        </div>
+                        
+                        <h:messages escape="false" layout="table" />
+                    </h:form>
                 </div><!--/span9-->
 
                 <div class="span3">
                     <div class="row-fluid">
-                        <a href="#" class="btn btn-primary btn-large">Create a New Trip</a>
                         <div class="alert alert-info" style="margin-top: 20px;">You're logged in as #{currentUser.name} &lt;#{currentUser.email}&gt;</div>
-                        <a href="editprofile.xhtml" class="btn">Edit Account</a>
                         <h:form style="margin-top:20px;">
                             <h:commandButton value="Log out" class="btn" ajax="false" action="#{logout.submit}" />
                         </h:form>
