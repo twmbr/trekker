@@ -18,10 +18,9 @@ public class UserService {
         return em.find(User.class, id);
     }
     
-    public User find(String email, String password) {
+    public User find(String email) {
         List<User> found = em.createNamedQuery("User.find", User.class)
                 .setParameter("email", email)
-                .setParameter("password", password)
                 .getResultList();
         return found.isEmpty() ? null : found.get(0);
     }
@@ -35,11 +34,9 @@ public class UserService {
     @Produces
     @Named("currentUser")
     public User currentUser() {
-        Object email = SecurityUtils.getSubject().getPrincipal();
-        List<User> found = em.createNamedQuery("User.findByEmail", User.class)
-                .setParameter("email", email)
-                .getResultList();
-        return found.isEmpty() ? null : found.get(0);
+        int userId = (Integer)SecurityUtils.getSubject().getPrincipal();
+        User user = find(userId);
+        return user;
     }
     
     public Integer create(User user) {
