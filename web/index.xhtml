@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:shiro="http://shiro.apache.org/tags">
+    <h:head>
+        <meta charset="utf-8" />
+        <title>trekker</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:favicon.gif']}"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:graphicImage library="img" name="logo.png" alt="trekker" />
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="about.xhtml">About</a></li>
+                        <shiro:user><li><a href="profile.xhtml">Profile</a></li></shiro:user>
+                        <li><a href="browse.xhtml">Browse Trips</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span9">
+                    <div id="carousel" class="carousel slide">
+                        <div class="carousel-inner">
+                            <div class="item active"><h:graphicImage library="img" name="first.png" /></div>
+                            <div class="item"><h:graphicImage library="img" name="second.png" /></div>
+                            <div class="item"><h:graphicImage library="img" name="third.png" /></div>
+                        </div>
+                        <a class="carousel-control left" href="#carousel" data-slide="prev">&#x2039;</a>
+                        <a class="carousel-control right" href="#carousel" data-slide="next">&#x203a;</a>
+                    </div>
+                </div>
+                <div class="span3">
+                    <shiro:guest>
+                    <h3>Sign In</h3>
+                    <h:form id="login">
+                        <h:inputText id="email" value="#{login.email}" class="input-block-level" placeholder="Email" />
+                        <h:inputSecret id="password" value="#{login.password}" class="input-block-level" placeholder="Password" />
+                        <h:outputLabel for="rememberMe">
+                        <h:selectBooleanCheckbox id="rememberMe" value="#{login.remember}" />
+                        Remember me
+                        </h:outputLabel>
+                        <h:commandButton value="Sign in" class="btn btn-primary" ajax="false" action="#{login.submit}" />
+                        <small><a href="signup.xhtml">Create an account</a></small>
+                        <h:messages style="margin-top:20px;" globalOnly="true" escape="false" layout="table" />
+                    </h:form>
+                    </shiro:guest>
+                    <shiro:user>
+                        <div class="alert alert-info">You are logged in as #{currentUser.name} &lt;#{currentUser.email}&gt;</div>
+                        <a class="btn" href="profile.xhtml">Go to your profile</a>
+                        <h:form style="margin-top:20px;">
+                            <h:commandButton value="Log out" class="btn" ajax="false" action="#{logout.submit}" />
+                        </h:form>
+                    </shiro:user>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <p class="text-center"><small>trekker © 2013</small></p>
+                </div>
+            </div>
+        </div>
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script>
+            $('#carousel').carousel({
+                interval: 5000
+            })
+        </script>
+    </h:body>
+</html>

@@ -1,0 +1,25 @@
+.trip {
+	padding: 10px;
+	font-size: 18px;
+	background-color: #6fd3bc;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.trip h1{
+	margin-bottom:0;
+	font-size:25px;
+	line-height:1;
+	color:inherit;
+	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.trip a:link, a:hover, a:active, a:visited{
+	text-decoration: none;
+	color: #171828;
+}
+
+.spacer{
+	margin-top: 15px;
+}

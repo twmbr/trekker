@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:shiro="http://shiro.apache.org/tags">
+    <h:head>
+        <meta charset="utf-8" />
+        <title>trekker - Browse Trips</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
+        <h:outputStylesheet library="css" name="additional.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:favicon.gif']}"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+
+            <!--logo-->
+            <h:graphicImage library="img" name="logo.png" alt="trekker" />
+
+            <!--navigation toolbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="index.xhtml">Home</a></li>
+                        <li><a href="about.xhtml">About</a></li>
+                        <shiro:user><li><a href="profile.xhtml">Profile</a></li></shiro:user>
+                        <li class="active"><a href="#">Browse Trips</a></li>
+                    </ul>
+                </div>
+            </div><!--/navbar-->
+
+            <div class="row-fluid">
+
+                <div class="span4">
+                    <h3>Search Public Trips</h3>
+
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <label>Keyword</label>
+                                    <input type="text" id="keyword" name="keyword" class="span12" />
+
+                                    <label class="spacer">Date</label>
+                                    <select id="month" name="month" class="span5">
+                                        <option selected="">Month</option>
+                                        <option>Jan</option>
+                                        <option>Feb</option>
+                                        <option>Mar</option>
+                                        <option>Apr</option>
+                                        <option>May</option>
+                                        <option>Jun</option>
+                                        <option>Jul</option>
+                                        <option>Aug</option>
+                                        <option>Sept</option>
+                                        <option>Oct</option>
+                                        <option>Nov</option>
+                                        <option>Dec</option>
+                                    </select>
+                                    <select id="day" name="day" class="span3">
+                                        <option selected="">Day</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                    </select>
+                                    <select id="year" name="year" class="span4">
+                                        <option>2012</option>
+                                        <option>2011</option>
+                                    </select>
+                                    <button id="search" name="search" class="btn btn-primary spacer">Search</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="span8">
+                    <h3>Listing</h3>
+
+                    <div class="row-fluid">
+                        <ul class="thumbnails">
+                            <div class="row-fluid">
+                                <li class="span4">
+                                    <div class="thumbnail">
+                                        <a href="#"><h:graphicImage library="img" name="first.png" /></a>
+                                        <h3>Florida</h3>
+                                        <p>02/14/12 - 02/30-/12<br/>
+                                            Blurb here</p>
+                                    </div>
+                                </li>
+                                <li class="span4">
+                                    <div class="thumbnail">
+                                        <a href="#"><h:graphicImage library="img" name="second.png" /></a>
+                                        <h3>Other trip</h3>
+                                        <p>10/12/13 - 10/17/13<br/>
+                                            blurb</p>
+                                    </div>
+                                </li>
+                                <li class="span4">
+                                    <div class="thumbnail">
+                                        <a href="#"><h:graphicImage library="img" name="third.png" /></a>
+                                        <h3>some trip</h3>
+                                        <p>04/25/06 - 05/03/06<br/>
+                                            description</p>
+                                    </div>
+                                </li>
+                            </div>
+                            <div class="row-fluid spacer">
+                                <li class="span4">
+                                    <div class="thumbnail">
+                                        <a href="#"><h:graphicImage library="img" name="second.png" /></a>
+                                        <h3>midwest</h3>
+                                        <p>04/15/12 - 04/25/12<br/>
+                                            blurb</p>
+                                    </div>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    <p class="text-center"><small>trekker © 2013</small></p>
+                </div>
+            </div>
+
+        </div><!--/container-->
+    </h:body>
+</html>

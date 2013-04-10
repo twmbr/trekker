@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:shiro="http://shiro.apache.org/tags">
+    <h:head>
+        <meta charset="utf-8" />
+        <title>trekker - Create an account</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:favicon.gif']}"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:graphicImage library="img" name="logo.png" alt="trekker" />
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="index.xhtml">Home</a></li>
+                        <li><a href="about.xhtml">About</a></li>
+                        <shiro:user><li><a href="profile.xhtml">Profile</a></li></shiro:user>
+                        <li><a href="browse.xhtml">Browse Trips</a></li>
+                    </ul>
+                </div>
+            </div>
+            <shiro:guest>
+            <div class="row">
+                <div class="span12">
+                    <h:form id="signup" class="form-horizontal">
+                        <fieldset>
+
+                            <!-- Form Name -->
+                            <h2>Sign up for trekker</h2>
+
+                            <!-- Text input-->  
+                            <div class="control-group">
+                                <label class="control-label">E-mail Address</label>
+                                <div class="controls">
+                                    <h:inputText id="email" class="span4" value="#{signup.user.email}" placeholder="example@trekker.com" />
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="control-group">
+                                <label class="control-label">Profile Name</label>
+                                <div class="controls">
+                                        <h:inputText id="name" class="span4" value="#{signup.user.name}" />
+                                    <span class="help-inline"><small>This will be displayed on your profile</small></span>
+                                </div>
+                            </div>
+
+                            <!-- Password input-->
+                            <div class="control-group">
+                                <label class="control-label">Password</label>
+                                <div class="controls">
+                                    <h:inputSecret id="password" class="span4" value="#{signup.user.password}" />
+                                    <!--<span class="help-inline"><small>Max 16 characters</small></span>-->
+                                </div>
+                            </div>
+
+                            <!-- Password input
+                            <div class="control-group">
+                                <label class="control-label">Confirm Password</label>
+                                <div class="controls">
+                                    <input id="confirmPW" name="confirmPW" type="password" placeholder="" class="span4" />
+                                </div>
+                            </div> -->
+
+                            <!-- Button (Double) -->
+                            <div class="control-group">
+                                <label class="control-label"></label>
+                                <div class="controls">
+                                    <h:commandButton value="Sign up" class="btn btn-primary" ajax="false" action="#{signup.submit}" />
+                                </div>
+                            </div>
+
+                        </fieldset>
+                        <h:messages escape="false" layout="table" />
+                    </h:form>
+
+
+                </div>
+            </div>
+            </shiro:guest>
+            <shiro:user>
+                <div class="alert alert-warning">
+                    You are already logged in to an account.
+                </div>
+                <h:form>
+                    <h:commandButton value="Log out" class="btn" ajax="false" action="#{logout.submit}" />
+                </h:form>
+            </shiro:user>
+            <div class="row">
+                <div class="span12">
+                    <p class="text-center"><small>trekker © 2013  </small></p>
+                </div>
+            </div>
+        </div>
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    </h:body>
+</html>

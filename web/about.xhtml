@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:shiro="http://shiro.apache.org/tags">
+    <h:head>
+        <meta charset="utf-8" />
+        <title>trekker - About trekker</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:favicon.gif']}"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:graphicImage library="img" name="logo.png" alt="trekker" />
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="index.xhtml">Home</a></li>
+                        <li class="active"><a href="about.xhtml">About</a></li>
+                        <shiro:user><li><a href="profile.xhtml">Profile</a></li></shiro:user>
+                        <li><a href="browse.xhtml">Browse Trips</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <div class="hero-unit">
+                        <h1>Road trips made easy.</h1>
+                        <p>Hard to believe? trekker is an all-encompassing tool to make your road trips a cinch so you can relax and enjoy your vacation. Start your road trip now.</p>
+                        <shiro:guest><p><a class="btn btn-primary btn-large" href="signup.xhtml">Make an account</a></p></shiro:guest>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span4">
+                    <div class="well well-small">
+                        <h3>Plan</h3>
+                        <ul>
+                            <li>Add and remove to a list of stops</li>
+                            <li>Maps, directions, and time estimates</li>
+                            <li>Record info about your accommodations</li>
+                            <li>Organize your trip on a day-by-day basis</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="well well-small">
+                        <h3>Do</h3>
+                        <ul>
+                            <li>Make changes to anything on the fly while on your roadtrip</li>
+                            <li>Add media as you go</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="well well-small">
+                        <h3>Share</h3>
+                        <ul>
+                            <li>Keep your trips private to yourself</li>
+                            <li>Send a link to your trip with friends and family</li>
+                            <li>Share with the world and publish to our public listing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <p class="text-center"><small>trekker © 2013</small></p>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

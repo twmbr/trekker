@@ -1,0 +1,20 @@
+[main]
+user.loginUrl = /index.xhtml
+
+# DataSource config
+ds = org.apache.shiro.jndi.JndiObjectFactory
+ds.requiredType = javax.sql.DataSource
+ds.resourceName = java:app/jdbc/trekker
+
+# CreditialsMatcher config (use hashed passwords)
+cm = org.apache.shiro.authc.credential.HashedCredentialsMatcher
+cm.hashAlgorithmName = SHA-256
+
+# JDBC Realm config
+jdbcRealm = org.apache.shiro.realm.jdbc.JdbcRealm
+jdbcRealm.dataSource = $ds
+jdbcRealm.credentialsMatcher = $cm
+jdbcRealm.authenticationQuery = SELECT password FROM user WHERE email = ?
+
+[urls]
+/profile.xhtml = user

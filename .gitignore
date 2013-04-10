@@ -1,0 +1,9 @@
+# NetBeans
+nbproject/private/
+build/
+dist/
+
+# Config files
+web/WEB-INF/glassfish-resources.xml
+web/WEB-INF/shiro.ini
+

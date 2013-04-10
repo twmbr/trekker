@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.1"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+<factory>
+    <render-kit-factory>org.omnifaces.renderkit.Html5RenderKitFactory</render-kit-factory>
+</factory>
+<render-kit>
+    <renderer>
+        <component-family>javax.faces.Messages</component-family>
+        <renderer-type>javax.faces.Messages</renderer-type>
+        <renderer-class>com.trekker.util.EscapableMessagesRenderer</renderer-class>
+    </renderer>
+</render-kit>
+</faces-config>

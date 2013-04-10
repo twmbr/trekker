@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:shiro="http://shiro.apache.org/tags">
+    <h:head>
+        <meta charset="utf-8" />
+        <title>trekker - Username's Profile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
+        <h:outputStylesheet library="css" name="additional.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:favicon.gif']}"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <!--logo-->
+            <h:graphicImage library="img" name="logo.png" alt="trekker" />
+
+            <!--navigation toolbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="index.xhtml">Home</a></li>
+                        <li><a href="about.xhtml">About</a></li>
+                        <shiro:user><li class="active"><a href="profile.xhtml">Profile</a></li></shiro:user>
+                        <li><a href="browse.xhtml">Browse Trips</a></li>
+                    </ul>
+                </div>
+            </div><!--/navbar-->
+            
+            <div class="row-fluid">
+                <div class="span9">
+                    <div class="row-fluid">
+                        <h1>Current &amp; Future Trips</h1>
+                        <a href="#">
+                            <div class="trip">
+                                <h1>Florida Summer 2013</h1>
+                                <p>06/01/13 - 06/15/13</p>
+                            </div>
+                        </a>
+
+                        <a href="#">
+                            <div class="trip spacer">
+                                <h1>Disneyland 2014</h1>
+                                <p>04/01/14 - 04/20/14</p>
+                            </div>
+                        </a>
+                    </div><!--/row-fluid current-->
+
+                    <div class="row-fluid spacer">
+                        <h1>Past Trips</h1>
+                        
+                        <a href="#">
+                            <div class="trip">
+                                <h1>New England tour</h1>
+                                <p>09/25/12 - 10/05/12</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#">
+                            <div class="trip spacer">
+                                <h1>Midwest trip</h1>
+                                <p>08/02/10 - 08/10/10</p>
+                            </div>
+                        </a> 
+                    </div>
+                </div><!--/span9-->
+
+                <div class="span3">
+                    <div class="row-fluid">
+                        <a href="#" class="btn btn-primary btn-large">Create a New Trip</a>
+                        <div class="alert alert-info" style="margin-top: 20px;">You're logged in as #{currentUser.name} &lt;#{currentUser.email}&gt;</div>
+                        <h:form style="margin-top:20px;">
+                            <h:commandButton value="Log out" class="btn" ajax="false" action="#{logout.submit}" />
+                        </h:form>
+                    </div><!--/row-fluid-->
+
+                </div><!--/span3-->
+
+            </div><!--/row-fluid-->
+
+            <div class="row">
+                <div class="span12">
+                    <p class="text-center"><small>trekker © 2013</small></p>
+                </div>
+            </div>
+
+        </div><!--/container-->
+    </h:body>
+</html>
