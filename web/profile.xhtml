@@ -6,7 +6,7 @@
       xmlns:shiro="http://shiro.apache.org/tags">
     <h:head>
         <meta charset="utf-8" />
-        <title>trekker - Username's Profile</title>
+        <title>trekker - #{currentUser.name}'s Profile</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <h:outputStylesheet library="css" name="bootstrap.min.css" />
         <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
@@ -72,7 +72,7 @@
 
                 <div class="span3">
                     <div class="row-fluid">
-                        <a href="#" class="btn btn-primary btn-large">Create a New Trip</a>
+                        <a href="create.xhtml" class="btn btn-primary btn-large">Create a New Trip</a>
                         <div class="alert alert-info" style="margin-top: 20px;">You're logged in as #{currentUser.name} &lt;#{currentUser.email}&gt;</div>
                         <a href="editprofile.xhtml" class="btn">Edit Account</a>
                         <h:form style="margin-top:20px;">
