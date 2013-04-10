@@ -3,6 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:shiro="http://shiro.apache.org/tags">
     <h:head>
         <meta charset="utf-8" />
@@ -35,38 +36,23 @@
             <div class="row-fluid">
                 <div class="span9">
                     <div class="row-fluid">
-                        <h1>Current &amp; Future Trips</h1>
+                        <h1>Trips</h1>
+                        <c:forEach var="trip" items="#{currentUser.trips}">
                         <a href="#">
                             <div class="trip">
-                                <h1>Florida Summer 2013</h1>
-                                <p>06/01/13 - 06/15/13</p>
+                                <h1>#{trip.name}</h1>
+                                <p>
+                                    <h:outputText value="#{trip.startDate}">
+                                        <f:convertDateTime dateStyle="short"/>
+                                    </h:outputText>
+                                    -
+                                    <h:outputText value="#{trip.endDate}">
+                                        <f:convertDateTime dateStyle="short"/>
+                                    </h:outputText>
+                                </p>
                             </div>
                         </a>
-
-                        <a href="#">
-                            <div class="trip spacer">
-                                <h1>Disneyland 2014</h1>
-                                <p>04/01/14 - 04/20/14</p>
-                            </div>
-                        </a>
-                    </div><!--/row-fluid current-->
-
-                    <div class="row-fluid spacer">
-                        <h1>Past Trips</h1>
-                        
-                        <a href="#">
-                            <div class="trip">
-                                <h1>New England tour</h1>
-                                <p>09/25/12 - 10/05/12</p>
-                            </div>
-                        </a>
-                        
-                        <a href="#">
-                            <div class="trip spacer">
-                                <h1>Midwest trip</h1>
-                                <p>08/02/10 - 08/10/10</p>
-                            </div>
-                        </a> 
+                        </c:forEach>
                     </div>
                 </div><!--/span9-->
 
