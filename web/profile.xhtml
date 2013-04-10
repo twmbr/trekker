@@ -39,7 +39,7 @@
                         <h1>Trips</h1>
                         <c:forEach var="trip" items="#{currentUser.trips}">
                         <a href="trip.xhtml?id=#{trip.id}">
-                            <div class="trip">
+                            <div class="trip spacer">
                                 <h1>#{trip.name}</h1>
                                 <p>
                                     <h:outputText value="#{trip.startDate}">
