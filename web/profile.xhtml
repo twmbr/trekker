@@ -38,7 +38,7 @@
                     <div class="row-fluid">
                         <h1>Trips</h1>
                         <c:forEach var="trip" items="#{currentUser.trips}">
-                        <a href="#">
+                        <a href="trip.xhtml?id=#{trip.id}">
                             <div class="trip">
                                 <h1>#{trip.name}</h1>
                                 <p>

@@ -31,11 +31,19 @@
                 </div>
             </div><!--/navbar-->
 
-            <div class="page-header"><h1>Trip Name<small> profilename</small></h1></div>
+            <div class="page-header"><h1>#{tripDetails.trip.name}<small> #{currentUser.name}</small></h1></div>
             
-            <h3>Start Location, Start Date</h3>
+            <h3>#{tripDetails.trip.startLocation},
+                <h:outputText value="#{tripDetails.trip.startDate}">
+                    <f:convertDateTime dateStyle="short"/>
+                </h:outputText>
+            </h3>
             
-            <h3>End Location, End Date</h3>
+            <h3>#{tripDetails.trip.endLocation},
+                <h:outputText value="#{tripDetails.trip.endDate}">
+                    <f:convertDateTime dateStyle="short"/>
+                </h:outputText>
+            </h3>
             
             <div class="row">
                 <div class="span12">
