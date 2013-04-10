@@ -29,7 +29,7 @@ public class Trip implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message="<div class=\"alert alert-error\">Name required</div>")
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
@@ -44,10 +44,12 @@ public class Trip implements Serializable {
     private Date endDate;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(min = 1, max = 255, message="<div class=\"alert alert-error\">Start location required</div>")
     @Column(name = "start_location")
     private String startLocation;
-    @Size(max = 255)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255, message="<div class=\"alert alert-error\">End location required</div>")
     @Column(name = "end_location")
     private String endLocation;
     @JoinColumn(name = "owner", referencedColumnName = "id")
