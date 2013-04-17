@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:of="http://omnifaces.org/functions">
+    <h:head>
+        <meta charset="utf-8" />
+        <title>trekker - Create a Trip</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
+        <h:outputStylesheet library="css" name="additional.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:favicon.gif']}"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <!--logo-->
+            <h:graphicImage library="img" name="logo.png" alt="trekker" />
+
+            <!--navigation toolbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="index.xhtml">Home</a></li>
+                        <li><a href="about.xhtml">About</a></li>
+                        <shiro:user><li class="active"><a href="profile.xhtml">Profile</a></li></shiro:user>
+                        <li><a href="browse.xhtml">Browse Trips</a></li>
+                    </ul>
+                </div>
+            </div><!--/navbar-->
+
+            <div class="page-header"><h1>Add Accommodation <small>#{addEntry.trip.name}</small></h1></div>
+
+            <div class="row-fluid">
+                <h:form id="accommodations" class="form-horizontal">
+                    <div class="control-group">
+                        <label for="date" class="control-label">Date</label>
+                        <div class="controls">
+                            <h:selectOneMenu id="date" name="date" class="span2" value="#{addEntry.itinerary.date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy"/>
+                                <f:selectItems value="#{addEntry.everyday}" var="day" itemValue="#{of:formatDate(day, 'MM/dd/yyyy')}" itemLabel="#{of:formatDate(day, 'MM/dd/yyyy')}" />
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="hotelName" class="control-label">Location Name</label>
+                        <div class="controls">
+                            <h:inputText id="hotelName" name="hotelName" value="" class="span7"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Check-In Time</label>
+                        <div class="controls">
+                            <h:selectOneMenu id="checkInHour" class="span1" value="">
+                                <f:selectItem itemValue="0" itemLabel="12"/>
+                                <f:selectItem itemValue="1" itemLabel="1"/>
+                                <f:selectItem itemValue="2" itemLabel="2"/>
+                            </h:selectOneMenu>
+                            <h:selectOneMenu id="checkInMin" class="span1" value="">
+                                <f:selectItem itemValue="00" itemLabel="00"/>
+                                <f:selectItem itemValue="30" itemLabel="30"/>
+                            </h:selectOneMenu>
+                            <h:selectOneMenu id="checkInM" class="span1" value="">
+                                <f:selectItem itemValue="AM" itemLabel="AM"/>
+                                <f:selectItem itemValue="PM" itemLabel="PM"/>
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Check-Out Time</label>
+                        <div class="controls">
+                            <h:selectOneMenu id="checkOutHour" class="span1" value="">
+                                <f:selectItem itemValue="0" itemLabel="12"/>
+                                <f:selectItem itemValue="1" itemLabel="1"/>
+                                <f:selectItem itemValue="2" itemLabel="2"/>
+                            </h:selectOneMenu>
+                            <h:selectOneMenu id="checkOutMin" class="span1" value="">
+                                <f:selectItem itemValue="00" itemLabel="00"/>
+                                <f:selectItem itemValue="30" itemLabel="30"/>
+                            </h:selectOneMenu>
+                            <h:selectOneMenu id="checkOutM" class="span1" value="">
+                                <f:selectItem itemValue="AM" itemLabel="AM"/>
+                                <f:selectItem itemValue="PM" itemLabel="PM"/>
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="phone" class="control-label">Phone Number</label>
+                        <div class="controls">
+                            <h:inputText id="phone" value="" class="span3"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="address" class="control-label">Address</label>
+                        <div class="controls">
+                            <h:inputTextarea rows="4" id="address" value="" class="span5"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="notes" class="control-label">Notes</label>
+                        <div class="controls">
+                            <h:inputTextarea rows="5" id="notes" value="" class="span7"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <h:commandButton value="Add Accommodation" class="btn btn-primary">
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+
+        </div><!--/container-->
+    </h:body>
+</html>
