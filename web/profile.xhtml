@@ -38,20 +38,21 @@
                     <div class="row-fluid">
                         <h1>Trips</h1>
                         <c:forEach var="trip" items="#{currentUser.trips}">
-                        <a href="trip.xhtml?id=#{trip.id}">
-                            <div class="trip spacer">
-                                <h1>#{trip.name}</h1>
-                                <p>
-                                    <h:outputText value="#{trip.startDate}">
-                                        <f:convertDateTime dateStyle="short"/>
-                                    </h:outputText>
-                                    -
-                                    <h:outputText value="#{trip.endDate}">
-                                        <f:convertDateTime dateStyle="short"/>
-                                    </h:outputText>
-                                </p>
-                            </div>
-                        </a>
+                        <div class="trip spacer">
+                            <h:form id="deleteForm">
+                                <h:commandLink  onclick="return confirm('Are you sure?');" action="#{deleteTrip.submit(trip.id)}"><i class="icon-remove pull-right"></i></h:commandLink>
+                            </h:form>
+                            <h1><a href="trip.xhtml?id=#{trip.id}">#{trip.name}</a></h1>
+                            <p>
+                                <h:outputText value="#{trip.startDate}">
+                                    <f:convertDateTime dateStyle="short"/>
+                                </h:outputText>
+                                -
+                                <h:outputText value="#{trip.endDate}">
+                                    <f:convertDateTime dateStyle="short"/>
+                                </h:outputText>
+                            </p>
+                        </div>
                         </c:forEach>
                     </div>
                 </div><!--/span9-->
