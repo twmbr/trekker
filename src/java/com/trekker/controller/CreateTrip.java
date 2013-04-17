@@ -52,7 +52,6 @@ public class CreateTrip {
         Collection<Trip> trips = user.getTrips();
         trips.add(trip);
         user.setTrips(trips);
-        tripService.create(trip);
         userService.update(user);
         Messages.addFlashGlobalInfo("<div class=\"alert alert-success\">Trip successfully created</div>");
         Faces.redirect("profile.xhtml");
