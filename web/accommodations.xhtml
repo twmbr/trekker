@@ -8,7 +8,7 @@
       xmlns:of="http://omnifaces.org/functions">
     <h:head>
         <meta charset="utf-8" />
-        <title>trekker - Create a Trip</title>
+        <title>trekker - Add accommodation</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <h:outputStylesheet library="css" name="bootstrap.min.css" />
         <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
@@ -32,14 +32,14 @@
                 </div>
             </div><!--/navbar-->
 
-            <div class="page-header"><h1>Add Accommodation <small>#{addEntry.trip.name}</small></h1></div>
+            <div class="page-header"><h1>Add Accommodation <small>#{addAccommodation.trip.name}</small></h1></div>
 
             <div class="row-fluid">
                 <h:form id="accommodations" class="form-horizontal">
                     <div class="control-group">
                         <label for="date" class="control-label">Date</label>
                         <div class="controls">
-                            <h:selectOneMenu id="date" name="date" class="span2" value="#{addEntry.itinerary.date}">
+                            <h:selectOneMenu id="date" name="date" class="span2" value="#{addAccommodation.date}">
                                 <f:convertDateTime pattern="MM/dd/yyyy"/>
                                 <f:selectItems value="#{addEntry.everyday}" var="day" itemValue="#{of:formatDate(day, 'MM/dd/yyyy')}" itemLabel="#{of:formatDate(day, 'MM/dd/yyyy')}" />
                             </h:selectOneMenu>
@@ -49,25 +49,42 @@
                     <div class="control-group">
                         <label for="hotelName" class="control-label">Location Name</label>
                         <div class="controls">
-                            <h:inputText id="hotelName" name="hotelName" value="" class="span7"/>
+                            <h:inputText id="hotelName" name="hotelName" value="#{addAccommodation.accommodation.name}" class="span7"/>
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label class="control-label">Check-In Time</label>
                         <div class="controls">
-                            <h:selectOneMenu id="checkInHour" class="span1" value="">
-                                <f:selectItem itemValue="0" itemLabel="12"/>
+                            <h:selectOneMenu id="checkInHour" class="span1" value="#{addAccommodation.checkinHour}">
+                                <f:selectItem itemValue="0" itemLabel="0"/>
                                 <f:selectItem itemValue="1" itemLabel="1"/>
                                 <f:selectItem itemValue="2" itemLabel="2"/>
+                                <f:selectItem itemValue="3" itemLabel="3"/>
+                                <f:selectItem itemValue="4" itemLabel="4"/>
+                                <f:selectItem itemValue="5" itemLabel="5"/>
+                                <f:selectItem itemValue="6" itemLabel="6"/>
+                                <f:selectItem itemValue="7" itemLabel="7"/>
+                                <f:selectItem itemValue="8" itemLabel="8"/>
+                                <f:selectItem itemValue="9" itemLabel="9"/>
+                                <f:selectItem itemValue="10" itemLabel="10"/>
+                                <f:selectItem itemValue="11" itemLabel="11"/>
+                                <f:selectItem itemValue="12" itemLabel="12"/>
+                                <f:selectItem itemValue="13" itemLabel="13"/>
+                                <f:selectItem itemValue="14" itemLabel="14"/>
+                                <f:selectItem itemValue="15" itemLabel="15"/>
+                                <f:selectItem itemValue="16" itemLabel="16"/>
+                                <f:selectItem itemValue="17" itemLabel="17"/>
+                                <f:selectItem itemValue="18" itemLabel="18"/>
+                                <f:selectItem itemValue="19" itemLabel="19"/>
+                                <f:selectItem itemValue="20" itemLabel="20"/>
+                                <f:selectItem itemValue="21" itemLabel="21"/>
+                                <f:selectItem itemValue="22" itemLabel="22"/>
+                                <f:selectItem itemValue="23" itemLabel="23"/>
                             </h:selectOneMenu>
-                            <h:selectOneMenu id="checkInMin" class="span1" value="">
-                                <f:selectItem itemValue="00" itemLabel="00"/>
+                            <h:selectOneMenu id="checkInMin" class="span1" value="#{addAccommodation.checkinMinute}">
+                                <f:selectItem itemValue="0" itemLabel="00"/>
                                 <f:selectItem itemValue="30" itemLabel="30"/>
-                            </h:selectOneMenu>
-                            <h:selectOneMenu id="checkInM" class="span1" value="">
-                                <f:selectItem itemValue="AM" itemLabel="AM"/>
-                                <f:selectItem itemValue="PM" itemLabel="PM"/>
                             </h:selectOneMenu>
                         </div>
                     </div>
@@ -75,18 +92,35 @@
                     <div class="control-group">
                         <label class="control-label">Check-Out Time</label>
                         <div class="controls">
-                            <h:selectOneMenu id="checkOutHour" class="span1" value="">
-                                <f:selectItem itemValue="0" itemLabel="12"/>
+                            <h:selectOneMenu id="checkOutHour" class="span1" value="#{addAccommodation.checkoutHour}">
+                                <f:selectItem itemValue="0" itemLabel="0"/>
                                 <f:selectItem itemValue="1" itemLabel="1"/>
                                 <f:selectItem itemValue="2" itemLabel="2"/>
+                                <f:selectItem itemValue="3" itemLabel="3"/>
+                                <f:selectItem itemValue="4" itemLabel="4"/>
+                                <f:selectItem itemValue="5" itemLabel="5"/>
+                                <f:selectItem itemValue="6" itemLabel="6"/>
+                                <f:selectItem itemValue="7" itemLabel="7"/>
+                                <f:selectItem itemValue="8" itemLabel="8"/>
+                                <f:selectItem itemValue="9" itemLabel="9"/>
+                                <f:selectItem itemValue="10" itemLabel="10"/>
+                                <f:selectItem itemValue="11" itemLabel="11"/>
+                                <f:selectItem itemValue="12" itemLabel="12"/>
+                                <f:selectItem itemValue="13" itemLabel="13"/>
+                                <f:selectItem itemValue="14" itemLabel="14"/>
+                                <f:selectItem itemValue="15" itemLabel="15"/>
+                                <f:selectItem itemValue="16" itemLabel="16"/>
+                                <f:selectItem itemValue="17" itemLabel="17"/>
+                                <f:selectItem itemValue="18" itemLabel="18"/>
+                                <f:selectItem itemValue="19" itemLabel="19"/>
+                                <f:selectItem itemValue="20" itemLabel="20"/>
+                                <f:selectItem itemValue="21" itemLabel="21"/>
+                                <f:selectItem itemValue="22" itemLabel="22"/>
+                                <f:selectItem itemValue="23" itemLabel="23"/>
                             </h:selectOneMenu>
-                            <h:selectOneMenu id="checkOutMin" class="span1" value="">
-                                <f:selectItem itemValue="00" itemLabel="00"/>
+                            <h:selectOneMenu id="checkOutMin" class="span1" value="#{addAccommodation.checkoutMinute}">
+                                <f:selectItem itemValue="0" itemLabel="00"/>
                                 <f:selectItem itemValue="30" itemLabel="30"/>
-                            </h:selectOneMenu>
-                            <h:selectOneMenu id="checkOutM" class="span1" value="">
-                                <f:selectItem itemValue="AM" itemLabel="AM"/>
-                                <f:selectItem itemValue="PM" itemLabel="PM"/>
                             </h:selectOneMenu>
                         </div>
                     </div>
@@ -94,27 +128,28 @@
                     <div class="control-group">
                         <label for="phone" class="control-label">Phone Number</label>
                         <div class="controls">
-                            <h:inputText id="phone" value="" class="span3"/>
+                            <h:inputText id="phone" value="#{addAccommodation.accommodation.phone}" class="span3"/>
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label for="address" class="control-label">Address</label>
                         <div class="controls">
-                            <h:inputTextarea rows="4" id="address" value="" class="span5"/>
+                            <h:inputTextarea rows="4" id="address" value="#{addAccommodation.accommodation.address}" class="span5"/>
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label for="notes" class="control-label">Notes</label>
                         <div class="controls">
-                            <h:inputTextarea rows="5" id="notes" value="" class="span7"/>
+                            <h:inputTextarea rows="5" id="notes" value="#{addAccommodation.accommodation.notes}" class="span7"/>
                         </div>
                     </div>
 
                     <div class="control-group">
                         <div class="controls">
-                            <h:commandButton value="Add Accommodation" class="btn btn-primary">
+                            <h:commandButton value="Add Accommodation" class="btn btn-primary" action="#{addAccommodation.submit}">
+                                <f:param name="id" value="#{param.id}"/>
                             </h:commandButton>
                         </div>
                     </div>
