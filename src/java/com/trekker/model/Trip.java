@@ -26,6 +26,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 public class Trip implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
+    private Collection<Accommodation> accommodationCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
     private Collection<Itinerary> itineraryCollection;
     private static final long serialVersionUID = 1L;
     @Id
@@ -165,6 +167,15 @@ public class Trip implements Serializable {
 
     public void setItineraryCollection(Collection<Itinerary> itineraryCollection) {
         this.itineraryCollection = itineraryCollection;
+    }
+
+    @XmlTransient
+    public Collection<Accommodation> getAccommodationCollection() {
+        return accommodationCollection;
+    }
+
+    public void setAccommodationCollection(Collection<Accommodation> accommodationCollection) {
+        this.accommodationCollection = accommodationCollection;
     }
     
 }
