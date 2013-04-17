@@ -32,22 +32,38 @@
             </div><!--/navbar-->
 
             <div class="page-header"><h1>#{tripDetails.trip.name}<small> #{currentUser.name}</small></h1></div>
-            
+
             <h:messages globalOnly="true" escape="false" layout="table" />
 
             <a href="addentry.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Add an entry to the itinerary</a>
 
-            <h3>Departure: #{tripDetails.trip.startLocation},
+            <h3>#{tripDetails.trip.startLocation} to #{tripDetails.trip.endLocation}, 
                 <h:outputText value="#{tripDetails.trip.startDate}">
                     <f:convertDateTime dateStyle="short"/>
-                </h:outputText>
-            </h3>
-           
-            <h3>Arrival: #{tripDetails.trip.endLocation},
+                </h:outputText> - 
                 <h:outputText value="#{tripDetails.trip.endDate}">
                     <f:convertDateTime dateStyle="short"/>
                 </h:outputText>
             </h3>
+            <h3>Itinerary</h3>
+            <c:forEach items="#{tripDetails.trip.itineraryCollection}" var="entry">
+                <dl class="dl-horizontal">
+                    <dt>Date</dt>
+                    <dd>
+                        <h:outputText value="#{entry.date}">
+                            <f:convertDateTime dateStyle="short"/>
+                        </h:outputText>
+                    </dd>
+                    <dt>Name</dt>
+                    <dd>#{entry.name}</dd>
+                    <dt>Location</dt>
+                    <dd>#{entry.location}</dd>
+                    <dt>Location Details</dt>
+                    <dd>#{entry.details}</dd>
+                    <dt>Description</dt>
+                    <dd>#{entry.description}</dd>
+                </dl>
+            </c:forEach>
 
             <div class="row">
                 <div class="span12">
