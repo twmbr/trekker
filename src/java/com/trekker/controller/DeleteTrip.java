@@ -32,6 +32,7 @@ public class DeleteTrip {
         Trip triptoDelete = tripService.find(tripId);
         user.getTrips().remove(triptoDelete);
         userService.update(user);
+        tripService.delete(triptoDelete);
         Messages.addFlashGlobalInfo("<div class=\"alert alert-success\">Trip successfully deleted</div>");
         Faces.redirect("profile.xhtml");
     }
