@@ -36,6 +36,7 @@
             <h:messages globalOnly="true" escape="false" layout="table" />
 
             <a href="addentry.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Add an entry to the itinerary</a>
+            <a href="accommodations.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Add an accommodation</a>
 
             <h3>#{tripDetails.trip.startLocation} to #{tripDetails.trip.endLocation}, 
                 <h:outputText value="#{tripDetails.trip.startDate}">
@@ -45,25 +46,63 @@
                     <f:convertDateTime dateStyle="short"/>
                 </h:outputText>
             </h3>
-            <h3>Itinerary</h3>
-            <c:forEach items="#{tripDetails.trip.itineraryCollection}" var="entry">
-                <dl class="dl-horizontal">
-                    <dt>Date</dt>
-                    <dd>
-                        <h:outputText value="#{entry.date}">
-                            <f:convertDateTime dateStyle="short"/>
-                        </h:outputText>
-                    </dd>
-                    <dt>Name</dt>
-                    <dd>#{entry.name}</dd>
-                    <dt>Location</dt>
-                    <dd>#{entry.location}</dd>
-                    <dt>Location Details</dt>
-                    <dd>#{entry.details}</dd>
-                    <dt>Description</dt>
-                    <dd>#{entry.description}</dd>
-                </dl>
-            </c:forEach>
+            <div class="row-fluid">
+                <div class="span6">
+                    <h3>Itinerary</h3>
+                    <c:forEach items="#{tripDetails.trip.itineraryCollection}" var="entry">
+                        <dl class="dl-horizontal well">
+                            <dt>Date</dt>
+                            <dd>
+                                <h:outputText value="#{entry.date}">
+                                    <f:convertDateTime dateStyle="short"/>
+                                </h:outputText>
+                            </dd>
+                            <dt>Name</dt>
+                            <dd>#{entry.name}</dd>
+                            <dt>Location</dt>
+                            <dd>#{entry.location}</dd>
+                            <dt>Location Details</dt>
+                            <dd><pre class="span8" style="font-family: 'Helvetica Neue'">#{entry.details}</pre></dd>
+                            <dt>Description</dt>
+                            <dd><pre class="span8" style="font-family: 'Helvetica Neue'">#{entry.description}</pre></dd>
+                        </dl>
+                    </c:forEach>
+                </div>
+                
+                <div class="span6">
+                    <h3>Accommodations</h3>
+                    <c:forEach items="#{tripDetails.trip.accommodationCollection}" var="accommodation">
+                        <dl class="dl-horizontal well">
+                            <dt>Date</dt>
+                            <dd>
+                                <h:outputText value="#{accommodation.checkinTime}">
+                                    <f:convertDateTime dateStyle="short" />
+                                </h:outputText>
+                            </dd>
+                            <dt>Name</dt>
+                            <dd>#{accommodation.name}</dd>
+                            <dt>Check-in Time</dt>
+                            <dd>
+                                <h:outputText value="#{accommodation.checkinTime}">
+                                    <f:convertDateTime pattern="h:mm a" />
+                                </h:outputText>
+                            </dd>
+                            <dt>Check-out Time</dt>
+                            <dd>
+                                <h:outputText value="#{accommodation.checkoutTime}">
+                                    <f:convertDateTime pattern="h:mm a" />
+                                </h:outputText>
+                            </dd>
+                            <dt>Phone</dt>
+                            <dd>#{accommodation.phone}</dd>
+                            <dt>Address</dt>
+                            <dd><pre class="span8" style="font-family: 'Helvetica Neue'">#{accommodation.address}</pre></dd>
+                            <dt>Notes</dt>
+                            <dd><pre class="span8" style="font-family: 'Helvetica Neue'">#{accommodation.notes}</pre></dd>
+                        </dl>
+                    </c:forEach>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="span12">
