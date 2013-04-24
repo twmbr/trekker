@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.28)
 # Database: trekker
-# Generation Time: 2013-04-17 20:19:04 +0000
+# Generation Time: 2013-04-24 00:36:02 +0000
 # ************************************************************
 
 
@@ -72,6 +72,27 @@ CREATE TABLE `itinerary` (
   PRIMARY KEY (`id`),
   KEY `itinerary_has_trip` (`trip_id`),
   CONSTRAINT `itinerary_has_trip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+# Dump of table accommodation
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `accommodation`;
+
+CREATE TABLE `accommodation` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `trip_id` int(11) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `checkin_time` datetime NOT NULL,
+  `checkout_time` datetime NOT NULL,
+  `phone` varchar(20) DEFAULT '',
+  `address` text,
+  `notes` text,
+  PRIMARY KEY (`id`),
+  KEY `accommodation_has_trip` (`trip_id`),
+  CONSTRAINT `accommodation_has_trip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
