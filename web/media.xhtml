@@ -3,7 +3,8 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:shiro="http://shiro.apache.org/tags">
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
         <meta charset="utf-8" />
         <title>trekker - #{tripDetails.trip.name} media</title>
@@ -69,15 +70,12 @@
 
             <div class="row">
                 <div class="span12">
-                    <h3>Image Gallery</h3>
-                    <a title="interdum hendrerit Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin imperdiet augue et 
-                       magna interdum hendrerit Lorem ipsum dolor sit amet, consectetur adipiscing elit." 
-                       class="fancybox" rel="group" href="resources/img/gallery/1_b.jpg"><h:graphicImage library="img" name="gallery/1_b.jpg" alt="" class="thumb"/></a>
-                    <a title="nterdum hendrerit Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin imperdiet augue et 
-                       magna interdum hendrerit Lorem ipsum dolor sit " class="fancybox" rel="group" href="resources/img/gallery/2_b.jpg"><h:graphicImage library="img" name="gallery/2_b.jpg" alt="" class="thumb"/></a>
-                </div>
-                <div class="span12 spacer">
-                    <h3>Video Gallery</h3>
+                    <c:forEach items="#{tripDetails.trip.mediaCollection}" var="media">
+                        <a href="uploads/#{currentUser.id}/#{tripDetails.trip.id}/#{media.filename}" rel="group" 
+                           class="fancybox" title="#{media.caption}">
+                            <img src="uploads/#{currentUser.id}/#{tripDetails.trip.id}/t/#{media.filename}"/>
+                        </a>
+                    </c:forEach>
                 </div>
             </div>
         </div>

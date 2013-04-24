@@ -37,25 +37,13 @@
             <div class="row-fluid">
                 <h:form id="accommodations" class="form-horizontal">
                     <div class="control-group">
-                        <label for="date" class="control-label">Date</label>
-                        <div class="controls">
-                            <h:selectOneMenu id="date" name="date" class="span2" value="#{addAccommodation.date}">
+                        <label for="startDate" class="control-label">Check-In Date</label>
+                        <div class="controls form-inline">
+                            <h:selectOneMenu id="startDate" class="span2" value="#{addAccommodation.date}">
                                 <f:convertDateTime pattern="MM/dd/yyyy"/>
                                 <f:selectItems value="#{addEntry.everyday}" var="day" itemValue="#{of:formatDate(day, 'MM/dd/yyyy')}" itemLabel="#{of:formatDate(day, 'MM/dd/yyyy')}" />
                             </h:selectOneMenu>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label for="hotelName" class="control-label">Location Name</label>
-                        <div class="controls">
-                            <h:inputText id="hotelName" name="hotelName" value="#{addAccommodation.accommodation.name}" class="span7"/>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label">Check-In Time</label>
-                        <div class="controls">
+                            <label style="margin-right: 25px; margin-left: 25px;">Check-In Time</label>
                             <h:selectOneMenu id="checkInHour" class="span1" value="#{addAccommodation.checkinHour}">
                                 <f:selectItem itemValue="0" itemLabel="0"/>
                                 <f:selectItem itemValue="1" itemLabel="1"/>
@@ -88,10 +76,15 @@
                             </h:selectOneMenu>
                         </div>
                     </div>
-
+                    
                     <div class="control-group">
-                        <label class="control-label">Check-Out Time</label>
-                        <div class="controls">
+                        <label for="endDate" class="control-label">Check-Out Date</label>
+                        <div class="controls form-inline">
+                            <h:selectOneMenu id="endDate" class="span2" value="">
+                                <f:convertDateTime pattern="MM/dd/yyyy"/>
+                                <f:selectItems value="#{addEntry.everyday}" var="day" itemValue="#{of:formatDate(day, 'MM/dd/yyyy')}" itemLabel="#{of:formatDate(day, 'MM/dd/yyyy')}"/>
+                            </h:selectOneMenu>
+                            <label style="margin-right: 15px; margin-left: 25px;">Check-Out Time</label>
                             <h:selectOneMenu id="checkOutHour" class="span1" value="#{addAccommodation.checkoutHour}">
                                 <f:selectItem itemValue="0" itemLabel="0"/>
                                 <f:selectItem itemValue="1" itemLabel="1"/>
@@ -122,6 +115,13 @@
                                 <f:selectItem itemValue="0" itemLabel="00"/>
                                 <f:selectItem itemValue="30" itemLabel="30"/>
                             </h:selectOneMenu>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="hotelName" class="control-label">Location Name</label>
+                        <div class="controls">
+                            <h:inputText id="hotelName" name="hotelName" value="#{addAccommodation.accommodation.name}" class="span7"/>
                         </div>
                     </div>
                     
