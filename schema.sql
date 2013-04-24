@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.28)
 # Database: trekker
-# Generation Time: 2013-04-24 00:36:02 +0000
+# Generation Time: 2013-04-24 18:23:13 +0000
 # ************************************************************
 
 
@@ -93,6 +93,27 @@ CREATE TABLE `accommodation` (
   PRIMARY KEY (`id`),
   KEY `accommodation_has_trip` (`trip_id`),
   CONSTRAINT `accommodation_has_trip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+# Dump of table media
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `media`;
+
+CREATE TABLE `media` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `trip_id` int(11) unsigned NOT NULL,
+  `caption` text,
+  `filename` varchar(50) NOT NULL DEFAULT '',
+  `uploaded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `media_has_user` (`user_id`),
+  KEY `media_has_trip` (`trip_id`),
+  CONSTRAINT `media_has_trip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `media_has_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

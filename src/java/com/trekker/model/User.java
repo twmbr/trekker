@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.trekker.model;
 
 import java.io.Serializable;
@@ -16,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -23,10 +20,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author joey
- */
 @Entity
 @Table(name = "user")
 @XmlRootElement
@@ -35,6 +28,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.find", query = "SELECT u FROM User u WHERE u.email = :email")
 })
 public class User implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @OrderBy("uploaded")
+    private Collection<Media> mediaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Collection<Trip> trips;
     private static final long serialVersionUID = 1L;
@@ -138,6 +134,15 @@ public class User implements Serializable {
 
     public void setTrips(Collection<Trip> trips) {
         this.trips = trips;
+    }
+
+    @XmlTransient
+    public Collection<Media> getMediaCollection() {
+        return mediaCollection;
+    }
+
+    public void setMediaCollection(Collection<Media> mediaCollection) {
+        this.mediaCollection = mediaCollection;
     }
     
 }

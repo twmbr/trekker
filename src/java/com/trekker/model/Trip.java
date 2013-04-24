@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,6 +26,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "trip")
 @XmlRootElement
 public class Trip implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
+    @OrderBy("uploaded")
+    private Collection<Media> mediaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
     private Collection<Accommodation> accommodationCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
@@ -176,6 +180,15 @@ public class Trip implements Serializable {
 
     public void setAccommodationCollection(Collection<Accommodation> accommodationCollection) {
         this.accommodationCollection = accommodationCollection;
+    }
+
+    @XmlTransient
+    public Collection<Media> getMediaCollection() {
+        return mediaCollection;
+    }
+
+    public void setMediaCollection(Collection<Media> mediaCollection) {
+        this.mediaCollection = mediaCollection;
     }
     
 }
