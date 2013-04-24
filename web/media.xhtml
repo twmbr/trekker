@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:shiro="http://shiro.apache.org/tags">
+    <h:head>
+        <meta charset="utf-8" />
+        <title>trekker - #{tripDetails.trip.name} media</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:favicon.gif']}"/>
+
+        <!-- Add jQuery library -->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+        <!-- Add fancyBox -->
+        <h:outputStylesheet library="css" name="jquery.fancybox.css"/>
+        <h:outputScript library="js" name="jquery.fancybox.pack.js"/>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".fancybox").fancybox();
+
+                $(".fancybox").fancybox({
+                    autosize: false,
+                    helpers : {
+                        title: {
+                            type: 'inside'
+                        },
+                        overlay : {
+                            css : {
+                                'background' : 'rgba(58, 42, 45, 0.95)'
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+
+        <style type="text/css">
+            .thumb {
+                width: 150px;
+                height: 150px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:graphicImage library="img" name="logo.png" alt="trekker" />
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="index.xhtml">Home</a></li>
+                        <li class="active"><a href="about.xhtml">About</a></li>
+                        <shiro:user><li><a href="profile.xhtml">Profile</a></li></shiro:user>
+                        <li><a href="browse.xhtml">Browse Trips</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="page-header"><h1>#{tripDetails.trip.name} - Media</h1></div>
+
+            <div class="row">
+                <div class="span12">
+                    <h3>Image Gallery</h3>
+                    <a title="interdum hendrerit Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin imperdiet augue et 
+                       magna interdum hendrerit Lorem ipsum dolor sit amet, consectetur adipiscing elit." 
+                       class="fancybox" rel="group" href="resources/img/gallery/1_b.jpg"><h:graphicImage library="img" name="gallery/1_b.jpg" alt="" class="thumb"/></a>
+                    <a title="nterdum hendrerit Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin imperdiet augue et 
+                       magna interdum hendrerit Lorem ipsum dolor sit " class="fancybox" rel="group" href="resources/img/gallery/2_b.jpg"><h:graphicImage library="img" name="gallery/2_b.jpg" alt="" class="thumb"/></a>
+                </div>
+                <div class="span12 spacer">
+                    <h3>Video Gallery</h3>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
