@@ -19,6 +19,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.imgscalr.Scalr;
@@ -61,8 +62,7 @@ public class Upload {
     
     public void handleFileUpload(FileUploadEvent event) {
         UploadedFile file = event.getFile();
-        String str = file.getFileName();
-        String extension = str.substring(str.lastIndexOf("."), str.length());
+        String extension = "." + FilenameUtils.getExtension(file.getFileName()).toLowerCase();
         String path = "uploads/" + user.getId() + "/" + id + "/";  
         String fileName = (new Md5Hash(file.getContents())).toHex();
         
