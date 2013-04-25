@@ -37,8 +37,6 @@ public class Media implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "filename")
     private String filename;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "uploaded")
     @Temporal(TemporalType.TIMESTAMP)
     private Date uploaded;
