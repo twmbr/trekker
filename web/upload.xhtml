@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:of="http://omnifaces.org/functions"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8" />
+        <title>trekker - Upload media</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
+        <h:outputStylesheet library="css" name="additional.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:favicon.gif']}"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <!--logo-->
+            <h:graphicImage library="img" name="logo.png" alt="trekker" />
+
+            <!--navigation toolbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="index.xhtml">Home</a></li>
+                        <li><a href="about.xhtml">About</a></li>
+                        <shiro:user><li class="active"><a href="profile.xhtml">Profile</a></li></shiro:user>
+                        <li><a href="browse.xhtml">Browse Trips</a></li>
+                    </ul>
+                </div>
+            </div><!--/navbar-->
+
+            <h1>
+                <ul class="breadcrumb">
+                    <li><a href="trip.xhtml?id=#{tripDetails.trip.id}">#{tripDetails.trip.name}</a><span class="divider"> /</span></li>
+                    <li class="active">Upload Media</li>
+                </ul>
+            </h1>
+
+            <div class="row-fluid">
+                <h:form enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="#{param.id}" />
+                    <p:fileUpload fileUploadListener="#{upload.handleFileUpload}"
+                                  mode="advanced"
+                                  update="messages"
+                                  multiple="true"
+                                  sizeLimit="5000000"
+                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                    <p:growl id="messages" showDetail="true" />
+                </h:form>
+            </div>
+
+        </div><!--/container-->
+    </h:body>
+</html>
