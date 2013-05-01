@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
@@ -25,6 +27,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "trip")
 @XmlRootElement
+
+@NamedQueries({
+    @NamedQuery(name = "Trip.list", query = "SELECT t FROM Trip t")
+})
 public class Trip implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
     @OrderBy("uploaded")
@@ -191,4 +197,10 @@ public class Trip implements Serializable {
         this.mediaCollection = mediaCollection;
     }
     
+   public Media getFirstPic() {
+       if (mediaCollection.isEmpty())
+       {return null;}
+       else
+       {return mediaCollection.iterator().next();}
+   }
 }
