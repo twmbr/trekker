@@ -68,7 +68,7 @@ public class Upload {
         try {
             InputStream in = file.getInputstream();
             File outFile = new File(path + fileName + extension);
-            outFile.getParentFile().mkdir();
+            outFile.getParentFile().mkdirs();
             OutputStream out = new FileOutputStream(outFile);
             IOUtils.copy(in, out);
             in.close();
@@ -77,6 +77,7 @@ public class Upload {
             BufferedImage fullSize = ImageIO.read(outFile);
             BufferedImage thumb = Scalr.resize(fullSize, 150);
             File outThumbFile = new File(path + "/t/" + fileName + ".jpg");
+            outThumbFile.getParentFile().mkdirs();
             ImageIO.write(thumb, "jpg", outThumbFile);
             
             media.setUserId(user);
