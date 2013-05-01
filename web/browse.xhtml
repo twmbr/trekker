@@ -3,7 +3,8 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:shiro="http://shiro.apache.org/tags">
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
         <meta charset="utf-8" />
         <title>trekker - Browse Trips</title>
@@ -32,7 +33,7 @@
             </div><!--/navbar-->
 
             <div class="page-header"><h1>Browse Public Trips</h1></div>
-            
+
             <div class="row-fluid">
 
                 <div class="span4">
@@ -84,46 +85,33 @@
                 <div class="span8">
                     <h3>Listing</h3>
 
-                    <div class="row-fluid">
-                        <ul class="thumbnails">
-                            <div class="row-fluid">
-                                <li class="span4">
-                                    <div class="thumbnail">
-                                        <a href="#"><h:graphicImage library="img" name="first.png" /></a>
-                                        <h3>Florida</h3>
-                                        <p>02/14/12 - 02/30-/12<br/>
-                                            Blurb here</p>
-                                    </div>
-                                </li>
-                                <li class="span4">
-                                    <div class="thumbnail">
-                                        <a href="#"><h:graphicImage library="img" name="second.png" /></a>
-                                        <h3>Other trip</h3>
-                                        <p>10/12/13 - 10/17/13<br/>
-                                            blurb</p>
-                                    </div>
-                                </li>
-                                <li class="span4">
-                                    <div class="thumbnail">
-                                        <a href="#"><h:graphicImage library="img" name="third.png" /></a>
-                                        <h3>some trip</h3>
-                                        <p>04/25/06 - 05/03/06<br/>
-                                            description</p>
-                                    </div>
-                                </li>
-                            </div>
-                            <div class="row-fluid spacer">
-                                <li class="span4">
-                                    <div class="thumbnail">
-                                        <a href="#"><h:graphicImage library="img" name="second.png" /></a>
-                                        <h3>midwest</h3>
-                                        <p>04/15/12 - 04/25/12<br/>
-                                            blurb</p>
-                                    </div>
-                                </li>
-                            </div>
+                        <ul class="thumbnails"> 
+                            <c:forEach items="#{trips}" var="trip">
+                                
+                                    <li class="span4">
+                                        <div class="thumbnail">
+                                            <a href="trip.xhtml?id=#{trip.id}"><c:choose>
+                                                <c:when test="#{trip.firstPic == null}">
+                                                    <h:graphicImage library="img" name="nopic.png"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="uploads/#{trip.owner.id}/#{trip.id}/#{trip.firstPic.filename}"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <h3>#{trip.name}</h3></a>
+                                            <p><h:outputText value="#{trip.startDate}">
+                                                    <f:convertDateTime dateStyle="short"/>
+                                                </h:outputText> - 
+                                                <h:outputText value="#{trip.endDate}">
+                                                    <f:convertDateTime dateStyle="short"/>
+                                                </h:outputText><br/>
+                                                #{trip.startLocation} - #{trip.endLocation}<br/>
+                                                by #{trip.owner.name}</p>
+                                        </div>
+                                    </li>
+                                
+                            </c:forEach> 
                         </ul>
-                    </div>
 
                 </div>
 
