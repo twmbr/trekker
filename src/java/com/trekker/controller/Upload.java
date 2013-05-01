@@ -62,7 +62,8 @@ public class Upload {
     public void handleFileUpload(FileUploadEvent event) {
         UploadedFile file = event.getFile();
         String extension = "." + FilenameUtils.getExtension(file.getFileName()).toLowerCase();
-        String path = "uploads/" + user.getId() + "/" + id + "/";  
+        String instanceRoot = System.getProperty("com.sun.aas.instanceRoot");
+        String path = instanceRoot + "/uploads/" + user.getId() + "/" + id + "/";  
         String fileName = (new Md5Hash(file.getContents())).toHex();
         
         try {
