@@ -7,7 +7,7 @@
     <property name="portNumber" value="3306"/>
     <property name="databaseName" value="trekker"/>
     <property name="User" value="root"/>
-    <property name="Password" value=""/>
+    <property name="Password" value="slay4466"/>
     <property name="driverClass" value="com.mysql.jdbc.Driver"/>
   </jdbc-connection-pool>
 </resources>
