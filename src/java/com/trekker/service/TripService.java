@@ -1,7 +1,6 @@
 package com.trekker.service;
 
 import com.trekker.model.Trip;
-import com.trekker.model.User;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;
@@ -36,5 +35,11 @@ public class TripService {
     @Named("trips")
     public List<Trip> list() {
         return em.createNamedQuery("Trip.list", Trip.class).getResultList();
+    }
+    
+    public List<Trip> findByKeyword(String keyword) {
+        return em.createNamedQuery("Trip.findByKeyword", Trip.class)
+                .setParameter("name", "%"+keyword+"%")
+                .getResultList();
     }
 }

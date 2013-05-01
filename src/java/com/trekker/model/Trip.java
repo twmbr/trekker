@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 
 @NamedQueries({
-    @NamedQuery(name = "Trip.list", query = "SELECT t FROM Trip t")
+    @NamedQuery(name = "Trip.list", query = "SELECT t FROM Trip t"),
+    @NamedQuery(name = "Trip.findByKeyword", query = "SELECT t FROM Trip t WHERE t.name LIKE :name")
 })
 public class Trip implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
