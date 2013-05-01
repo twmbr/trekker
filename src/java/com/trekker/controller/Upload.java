@@ -14,15 +14,14 @@ import java.io.OutputStream;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.imgscalr.Scalr;
+import org.omnifaces.util.Messages;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -87,10 +86,9 @@ public class Upload {
             trip.getMediaCollection().add(media);
             tripService.update(trip);
             
-            FacesMessage msg = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            Messages.addGlobalInfo("{0} uploaded successfully", file.getFileName());
         } catch (IOException e) {
-            e.printStackTrace();
+            Messages.addGlobalError("Upload failed. {0} not uploaded", file.getFileName());
         }
     }
 }
