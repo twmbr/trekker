@@ -21,10 +21,11 @@ public class AddAccommodation {
     private Trip trip;
     private Accommodation accommodation;
     
-    private Date date;
+    private Date checkinDate;
     private int checkinHour;
     private int checkinMinute;
     
+    private Date checkoutDate;
     private int checkoutHour;
     private int checkoutMinute;
     
@@ -39,8 +40,8 @@ public class AddAccommodation {
     
     public void submit() throws IOException {
         accommodation.setTripId(trip);
-        accommodation.setCheckinTime(date);
-        accommodation.setCheckoutTime((Date)date.clone());
+        accommodation.setCheckinTime(checkinDate);
+        accommodation.setCheckoutTime(checkoutDate);
         accommodation.getCheckinTime().setHours(checkinHour);
         accommodation.getCheckinTime().setMinutes(checkinMinute);
         accommodation.getCheckoutTime().setHours(checkoutHour);
@@ -65,16 +66,16 @@ public class AddAccommodation {
         return trip;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCheckinDate() {
+        return checkinDate;
     }
     
     public Accommodation getAccommodation() {
         return accommodation;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCheckinDate(Date date) {
+        this.checkinDate = date;
     }
 
     public int getCheckinHour() {
@@ -91,6 +92,14 @@ public class AddAccommodation {
 
     public void setCheckinMinute(int checkinMinute) {
         this.checkinMinute = checkinMinute;
+    }
+    
+    public Date getCheckoutDate() {
+        return checkoutDate;
+    }
+    
+    public void setCheckoutDate(Date checkoutDate) {
+        this.checkoutDate = checkoutDate;
     }
 
     public int getCheckoutHour() {

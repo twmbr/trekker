@@ -39,7 +39,7 @@
                     <div class="control-group">
                         <label for="startDate" class="control-label">Check-In Date</label>
                         <div class="controls form-inline">
-                            <h:selectOneMenu id="startDate" class="span2" value="#{addAccommodation.date}">
+                            <h:selectOneMenu id="startDate" class="span2" value="#{addAccommodation.checkinDate}">
                                 <f:convertDateTime pattern="MM/dd/yyyy"/>
                                 <f:selectItems value="#{addEntry.everyday}" var="day" itemValue="#{of:formatDate(day, 'MM/dd/yyyy')}" itemLabel="#{of:formatDate(day, 'MM/dd/yyyy')}" />
                             </h:selectOneMenu>
@@ -80,7 +80,7 @@
                     <div class="control-group">
                         <label for="endDate" class="control-label">Check-Out Date</label>
                         <div class="controls form-inline">
-                            <h:selectOneMenu id="endDate" class="span2" value="">
+                            <h:selectOneMenu id="endDate" class="span2" value="#{addAccommodation.checkoutDate}">
                                 <f:convertDateTime pattern="MM/dd/yyyy"/>
                                 <f:selectItems value="#{addEntry.everyday}" var="day" itemValue="#{of:formatDate(day, 'MM/dd/yyyy')}" itemLabel="#{of:formatDate(day, 'MM/dd/yyyy')}"/>
                             </h:selectOneMenu>
