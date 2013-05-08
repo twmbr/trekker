@@ -66,7 +66,8 @@ public class EditMedia {
                 Media mediaToDelete = mediaService.find(id);
                 trip.getMediaCollection().remove(mediaToDelete);
                 mediaService.delete(mediaToDelete);
-                String path = "uploads/" + user.getId() + "/" + this.id + "/";
+                String instanceRoot = System.getProperty("com.sun.aas.instanceRoot");
+                String path = instanceRoot + "uploads/" + user.getId() + "/" + this.id + "/";
                 File mediaFile = new File(path + mediaToDelete.getFilename());
                 File mediaThumbFile = new File(path + "t/" + mediaToDelete.getFilename());
                 mediaFile.delete();
