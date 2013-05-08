@@ -44,7 +44,7 @@
                             <h:form class="form-horizontal">
                                 <fieldset>
                                     <label>Location</label>
-                                    <input type="text" id="location" name="location" class="span12" />
+                                    <h:inputText id="location" class="span12" value="#{searchTrips.location}"/>
 
                                     <label class="spacer">Keyword</label>
                                     <h:inputText name="keyword" id="keyword" class="span12" value="#{searchTrips.keyword}" />
@@ -83,14 +83,16 @@
                 </div>
 
                 <div class="span8">
-                    <h3>Listing</h3>
+                    <div class="row-fluid">
+                        <h3>Listing</h3>
 
                         <ul class="thumbnails"> 
                             <c:forEach items="#{searchTrips.trips}" var="trip">
-                                
-                                    <li class="span4">
-                                        <div class="thumbnail">
-                                            <a href="trip.xhtml?id=#{trip.id}"><c:choose>
+
+                                <li class="span4">
+                                    <div class="thumbnail">
+                                        <a href="trip.xhtml?id=#{trip.id}">
+                                            <c:choose>
                                                 <c:when test="#{trip.firstPic == null}">
                                                     <h:graphicImage library="img" name="nopic.png"/>
                                                 </c:when>
@@ -98,23 +100,24 @@
                                                     <img src="uploads/#{trip.owner.id}/#{trip.id}/#{trip.firstPic.filename}"/>
                                                 </c:otherwise>
                                             </c:choose>
-                                            <h3>#{trip.name}</h3></a>
-                                            <p><h:outputText value="#{trip.startDate}">
-                                                    <f:convertDateTime dateStyle="short"/>
-                                                </h:outputText> - 
-                                                <h:outputText value="#{trip.endDate}">
-                                                    <f:convertDateTime dateStyle="short"/>
-                                                </h:outputText><br/>
-                                                #{trip.startLocation} - #{trip.endLocation}<br/>
-                                                by #{trip.owner.name}</p>
+                                        </a>
+                                            <div class="caption">
+                                            <h3>#{trip.name}</h3>
+                                        <p><h:outputText value="#{trip.startDate}">
+                                                <f:convertDateTime dateStyle="short"/>
+                                            </h:outputText> - 
+                                            <h:outputText value="#{trip.endDate}">
+                                                <f:convertDateTime dateStyle="short"/>
+                                            </h:outputText><br/>
+                                            #{trip.startLocation} - #{trip.endLocation}<br/>
+                                            by #{trip.owner.name}</p>
                                         </div>
-                                    </li>
-                                
+                                    </div>
+                                </li>
                             </c:forEach> 
                         </ul>
-
+                    </div>
                 </div>
-
             </div>
 
             <div class="row">
