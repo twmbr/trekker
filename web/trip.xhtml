@@ -36,7 +36,7 @@
             <h:messages globalOnly="true" escape="false" layout="table" />
 
             <p>
-            <a href="media.xhtml?id=#{tripDetails.trip.id}" class="btn btn-primary btn-large">View Media</a>
+                <a href="media.xhtml?id=#{tripDetails.trip.id}" class="btn btn-primary btn-large">View Media</a>
             </p>
             <a href="upload.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Upload Media</a>
             <a href="editmedia.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Edit Media</a>
@@ -78,6 +78,14 @@
                     <h3>Accommodations</h3>
                     <c:forEach items="#{tripDetails.trip.accommodationCollection}" var="accommodation">
                         <dl class="dl-horizontal well">
+                            <div style="float:right;">
+                                <h:form>
+                                    <h:commandLink  onclick="return confirm('Are you sure?');" action="#{deleteAccommodation.submit(accommodation.id)}">
+                                        <i class="icon-remove"></i>
+                                        <f:param name="id" value="#{param.id}" />
+                                    </h:commandLink>
+                                </h:form>
+                            </div>
                             <dt>Date</dt>
                             <dd>
                                 <h:outputText value="#{accommodation.checkinTime}">
