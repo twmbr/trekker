@@ -35,4 +35,23 @@ public class TripDetails {
     public Trip getTrip() {
         return trip;
     }
+    
+     public int getTripStartDate() {       
+        return trip.getStartDate().getDate();
+    }
+     public int getTripStartMonth() {       
+        return trip.getStartDate().getMonth();
+    }
+     public int getTripStartYear() {       
+        return trip.getStartDate().getYear()+1900;
+    }
+     public int getTripEndDate() {       
+        return trip.getEndDate().getDate();
+    }
+     public int getTripEndMonth() {       
+        return trip.getEndDate().getMonth();
+    }
+     public int getTripEndYear() {       
+        return trip.getEndDate().getYear()+1900;
+    }
 }

@@ -43,11 +43,11 @@ function getNewWayPointAddress() {
                    
                     if(stop == true){
                          var opt = new Option("StopOver: "+results[0].formatted_address,results[0].formatted_address);
-                        wayPoints.add(opt);
+                         document.getElementById("createTrip:wp_address").value = (String)(opt.text);            
                     }
                     else{
                          var opt = new Option("Not StopOver: "+results[0].formatted_address,results[0].formatted_address);
-                           wayPoints.add(opt);
+                         document.getElementById("createTrip:wp_address").value = (String)(opt.text);            
                     }
                 }
             } else {
