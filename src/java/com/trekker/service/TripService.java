@@ -42,4 +42,10 @@ public class TripService {
                 .setParameter("name", "%"+keyword+"%")
                 .getResultList();
     }
+    
+    public List<Trip> findByLocation(String location) {
+        return em.createNamedQuery("Trip.findByLocation", Trip.class)
+                .setParameter("location", "%" + location + "%")
+                .getResultList();
+    }
 }
