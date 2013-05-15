@@ -27,12 +27,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "trip")
 @XmlRootElement
-
 @NamedQueries({
     @NamedQuery(name = "Trip.list", query = "SELECT t FROM Trip t"),
     @NamedQuery(name = "Trip.findByKeyword", query = "SELECT t FROM Trip t WHERE t.name LIKE :name")
 })
 public class Trip implements Serializable {
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
     @OrderBy("uploaded")
     private Collection<Media> mediaCollection;
@@ -48,7 +48,7 @@ public class Trip implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message="<div class=\"alert alert-error\">Name required</div>")
+    @Size(min = 1, max = 255, message = "<div class=\"alert alert-error\">Name required</div>")
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
@@ -63,12 +63,12 @@ public class Trip implements Serializable {
     private Date endDate;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message="<div class=\"alert alert-error\">Start location required</div>")
+    @Size(min = 1, max = 255, message = "<div class=\"alert alert-error\">Start location required</div>")
     @Column(name = "start_location")
     private String startLocation;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message="<div class=\"alert alert-error\">End location required</div>")
+    @Size(min = 1, max = 255, message = "<div class=\"alert alert-error\">End location required</div>")
     @Column(name = "end_location")
     private String endLocation;
     @JoinColumn(name = "owner", referencedColumnName = "id")
@@ -197,11 +197,13 @@ public class Trip implements Serializable {
     public void setMediaCollection(Collection<Media> mediaCollection) {
         this.mediaCollection = mediaCollection;
     }
-    
-   public Media getFirstPic() {
-       if (mediaCollection.isEmpty())
-       {return null;}
-       else
-       {return mediaCollection.iterator().next();}
-   }
+
+    public String getFileUrl() {
+        if (mediaCollection.isEmpty()) {
+            return "resources/img/nopic.png";
+        } else {
+            Media pic = mediaCollection.iterator().next();
+            return "uploads/" + this.owner.getId() + "/" + this.id + "/" + pic.getFilename();
+        }
+    }
 }
