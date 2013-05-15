@@ -40,80 +40,76 @@
                 </div>
             </div><!--/navbar-->
 
-            <div class="page-header"><h1>Edit Trip: #{tripDetails.trip.name}</h1></div>
+            <div class="page-header"><h1>Edit Trip: #{editTrip.trip.name}</h1></div>
             
             <div class="row-fluid">
                 <h:form id="createTrip" class="form-horizontal">
                     <center>
-                        <a href="trip.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Return to Trip Page</a>
+                        <a href="trip.xhtml?id=#{editTrip.trip.id}" class="btn btn-medium">Return to Trip Page</a>
                     </center>
                     <br/>
                     <div class="control-group">
                         <label for="tripName" class="control-label">Name of Trip</label>
                         <div class="controls">
-                            <h:inputText id="tripName" value="#{tripDetails.trip.name}" class="span7"/>
+                            <h:inputText id="tripName" value="#{editTrip.id}" class="span7"/>
                         </div>
                     </div>
                     
                     <div class="control-group">
                         <span class="control-label">Start Location</span>
                         <div class="controls form-inline">
-                            <h:inputText id="start_address1" value="#{tripDetails.trip.startLocation}" style="width:400px;" />                           
+                            <h:inputText id="start_address1" value="#{editTrip.startLoc}" style="width:400px;" />                           
                         </div> 
                     </div>
                     
                      <div class="control-group">
                         <span class="control-label">End Location</span>
                         <div class="controls form-inline">
-                            <h:inputText id="end_address" value="#{tripDetails.trip.endLocation}" style="width:400px;"/>
+                            <h:inputText id="end_address" value="#{editTrip.endLoc}" style="width:400px;"/>
                         </div> 
                     </div>
                     
-                    <div class="control-group">
-                        <span class="control-label">Waypoint Location</span>
-                        <div class="controls form-inline">
-                            <h:inputText id="wp_address"  />
-                           <input type="checkbox" id="stopThere" value="ON" style=" margin-left: 25px;"> Stop Over</input>
-                           <input type="button"  class="btn btn-primary" value="New Way Point" onclick="getNewWayPointAddress()" style="margin-right: 15px; margin-left: 25px;"/>
-                        </div> 
-                    </div>
-                    
-                    <div class="control-group">
+                   <div class="control-group">
                         <span class="control-label">Waypoints</span>
                         <div class="controls form-inline">
                             <!--/add waypoint vales-->
-                            <h:selectManyListbox id="wayPoints" style="width:500px;"/>
+                            <h:selectManyListbox id="wayPoints" value="#{editTrip.selectedItems}" style="width:500px;">
+                                <f:selectItems value="#{editTrip.waypoints1}" var ="item" itemValue="#{item}"/>
+                             </h:selectManyListbox>
+                    
                         </div> 
                     </div>
                     
                     <div class="control-group">
                         <span class="control-label"></span>
                         <div class="controls form-inline">
-                          <input type="button" class="btn btn-primary" value="Move Waypoint Up" onclick="moveUpWayPointAddress()" style="margin-right: 15px; margin-left: 25px;"/>
-                          <input type="button" class="btn btn-primary" value="Move Waypoint Down" onclick="moveDownWayPointAddress()" style="margin-right: 15px; margin-left: 25px;"/>
-                          <input type="button" class="btn btn-primary" value="Remove Waypoint" onclick="removeWayPointAddress()" style="margin-right: 15px; margin-left: 25px;"/>
+                           <h:commandLink id="Testing3" action="#{editTrip.moveUpWayPoints()}" class="btn btn-primary" style="margin-right: 15px; margin-left: 25px;">Move Up Waypoints</h:commandLink>
+                           <h:commandLink id="Testing4" action="#{editTrip.moveDownWayPoints()}" class="btn btn-primary" style="margin-right: 15px; margin-left: 25px;">Move Down Waypoints</h:commandLink>
+                          <h:commandLink id="Testing2" action="#{editTrip.removeWayPoints()}" class="btn btn-primary" style="margin-right: 15px; margin-left: 25px;">Remove Waypoints</h:commandLink>
+                         
                         </div> 
                     </div>
+                    
 
                     <div class="control-group">
                         <label class="control-label">Start Date</label>
                         <div class="controls">
-                            <h:selectOneMenu id="startMonth" name="month" value="#{tripDetails.tripStartMonth}" class="span2">
-                                <f:selectItem itemValue="0" itemLabel="Month" />
-                                <f:selectItem itemValue="1" itemLabel="January" />
-                                <f:selectItem itemValue="2" itemLabel="February" />
-                                <f:selectItem itemValue="3" itemLabel="March" />
-                                <f:selectItem itemValue="4" itemLabel="April" />
-                                <f:selectItem itemValue="5" itemLabel="May" />
-                                <f:selectItem itemValue="6" itemLabel="June" />
-                                <f:selectItem itemValue="7" itemLabel="July" />
-                                <f:selectItem itemValue="8" itemLabel="August" />
-                                <f:selectItem itemValue="9" itemLabel="September" />
-                                <f:selectItem itemValue="10" itemLabel="October" />
-                                <f:selectItem itemValue="11" itemLabel="November" />
-                                <f:selectItem itemValue="12" itemLabel="December" />
+                            <h:selectOneMenu id="startMonth" name="month" value="#{editTrip.startMonth}" class="span2">
+                                <f:selectItem itemValue="-1" itemLabel="Month" />
+                                <f:selectItem itemValue="0" itemLabel="January" />
+                                <f:selectItem itemValue="1" itemLabel="February" />
+                                <f:selectItem itemValue="2" itemLabel="March" />
+                                <f:selectItem itemValue="3" itemLabel="April" />
+                                <f:selectItem itemValue="4" itemLabel="May" />
+                                <f:selectItem itemValue="5" itemLabel="June" />
+                                <f:selectItem itemValue="6" itemLabel="July" />
+                                <f:selectItem itemValue="7" itemLabel="August" />
+                                <f:selectItem itemValue="8" itemLabel="September" />
+                                <f:selectItem itemValue="9" itemLabel="October" />
+                                <f:selectItem itemValue="10" itemLabel="November" />
+                                <f:selectItem itemValue="11" itemLabel="December" />
                             </h:selectOneMenu>
-                            <h:selectOneMenu id="startDay" name="day" value="#{tripDetails.tripStartDate}" class="span1">
+                            <h:selectOneMenu id="startDay" name="day" value="#{editTrip.startDay}" class="span1">
                                 <f:selectItem itemLabel="Day" />
                                 <f:selectItem itemValue="1" itemLabel="1" />
                                 <f:selectItem itemValue="2" itemLabel="2" />
@@ -146,7 +142,7 @@
                                 <f:selectItem itemValue="29" itemLabel="29" />
                                 <f:selectItem itemValue="30" itemLabel="30" />
                             </h:selectOneMenu>
-                            <h:selectOneMenu id="startYear" name="year" value="#{tripDetails.tripStartYear}" class="span2">
+                            <h:selectOneMenu id="startYear" name="year" value="#{editTrip.startYear}" class="span2">
                                 <f:selectItem itemLabel="Year    " />
                                 <f:selectItem itemValue="2013" itemLabel="2013" />
                                 <f:selectItem itemValue="2012" itemLabel="2012" />
@@ -158,22 +154,22 @@
                     <div class="control-group">
                         <label class="control-label">End Date</label>
                         <div class="controls">
-                            <h:selectOneMenu id="endMonth" name="month" value="#{tripDetails.tripEndMonth}" class="span2">
-                                <f:selectItem itemValue="0" itemLabel="Month" />
-                                <f:selectItem itemValue="1" itemLabel="January" />
-                                <f:selectItem itemValue="2" itemLabel="February" />
-                                <f:selectItem itemValue="3" itemLabel="March" />
-                                <f:selectItem itemValue="4" itemLabel="April" />
-                                <f:selectItem itemValue="5" itemLabel="May" />
-                                <f:selectItem itemValue="6" itemLabel="June" />
-                                <f:selectItem itemValue="7" itemLabel="July" />
-                                <f:selectItem itemValue="8" itemLabel="August" />
-                                <f:selectItem itemValue="9" itemLabel="September" />
-                                <f:selectItem itemValue="10" itemLabel="October" />
-                                <f:selectItem itemValue="11" itemLabel="November" />
-                                <f:selectItem itemValue="12" itemLabel="December" />
+                            <h:selectOneMenu id="endMonth" name="month" value="#{editTrip.endMonth}" class="span2">
+                                <f:selectItem itemValue="-1" itemLabel="Month" />
+                                <f:selectItem itemValue="0" itemLabel="January" />
+                                <f:selectItem itemValue="1" itemLabel="February" />
+                                <f:selectItem itemValue="2" itemLabel="March" />
+                                <f:selectItem itemValue="3" itemLabel="April" />
+                                <f:selectItem itemValue="4" itemLabel="May" />
+                                <f:selectItem itemValue="5" itemLabel="June" />
+                                <f:selectItem itemValue="6" itemLabel="July" />
+                                <f:selectItem itemValue="7" itemLabel="August" />
+                                <f:selectItem itemValue="8" itemLabel="September" />
+                                <f:selectItem itemValue="9" itemLabel="October" />
+                                <f:selectItem itemValue="10" itemLabel="November" />
+                                <f:selectItem itemValue="11" itemLabel="December" />
                             </h:selectOneMenu>
-                            <h:selectOneMenu id="endDay" name="day" value="#{tripDetails.tripEndDate}" class="span1">
+                            <h:selectOneMenu id="endDay" name="day" value="#{editTrip.endDay}" class="span1">
                                 <f:selectItem itemLabel="Day" />
                                 <f:selectItem itemValue="1" itemLabel="1" />
                                 <f:selectItem itemValue="2" itemLabel="2" />
@@ -206,7 +202,7 @@
                                 <f:selectItem itemValue="29" itemLabel="29" />
                                 <f:selectItem itemValue="30" itemLabel="30" />
                             </h:selectOneMenu>
-                            <h:selectOneMenu id="endYear" name="year" value="#{tripDetails.tripEndYear}" class="span2">
+                            <h:selectOneMenu id="endYear" name="year" value="#{editTrip.endYear}" class="span2">
                                 <f:selectItem itemLabel="Year" />
                                 <f:selectItem itemValue="2013" itemLabel="2013" />
                                 <f:selectItem itemValue="2012" itemLabel="2012" />
@@ -218,14 +214,14 @@
                     <div class="control-group">
                         <div class="controls">
                             <input type="button" class="btn btn-primary" value="Create Route" onclick="calcRoute();" />
-                            <h:commandButton value="Save Trip" class="btn btn-primary" ajax="false" action="#{createTrip.submit}" style="margin-right: 15px; margin-left: 25px;"/>
+                            <h:commandButton value="Save Trip" class="btn btn-primary" ajax="false" action="#{editTrip.submit}" style="margin-right: 15px; margin-left: 25px;"/>
                         </div>
                     </div>
                     
                      <div class="control-group">
                         <label class="control-label">Trip Settings</label>
                         <div class="controls">
-                            <h:selectOneMenu id="privateSett" name="privateSett" value="#{createTrip.endMonth}" class="span2">
+                            <h:selectOneMenu id="privateSett" name="privateSett" value="#{editTrip.priv}" class="span2">
                                 <f:selectItem itemValue="1" itemLabel="Private" />
                                 <f:selectItem itemValue="2" itemLabel="Public" />
                             </h:selectOneMenu>

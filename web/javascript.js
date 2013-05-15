@@ -65,20 +65,6 @@ function getNewWayPointAddress() {
     
 }
 
-function removeWayPointAddress() {
-    var checkboxArray = document.getElementById("createTrip:wayPoints");
-    var temp = new Array();
-    for (var i = 0; i < checkboxArray.length; i++) {
-        if (checkboxArray.options[i].selected == true) {
-            temp.push(i);
-        }
-    }
-    for (i=temp.length-1;i>=0;i--)
-    {
-        wayPoints.remove(temp[i]);
-    }
-}
-
 function moveUpWayPointAddress() {
     var checkboxArray = document.getElementById("createTrip:wayPoints");
      var temp = new Array();
@@ -181,8 +167,10 @@ function calcRoute() {
     var waypts = [];
     var checkboxArray = document.getElementById("createTrip:wayPoints");
     var parts = "";
+    var parts1 = "";
     for (var i = 0; i < checkboxArray.length; i++) {
-        parts = checkboxArray.options[i].text.split(':');
+        parts1= checkboxArray.options[i].text.split('/');
+        parts = parts1[1].split(':');
         if (checkboxArray.options[i]) {
             if (parts[0]=="StopOver")
             waypts.push({
