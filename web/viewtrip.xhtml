@@ -35,14 +35,7 @@
 
             <h:messages globalOnly="true" escape="false" layout="table" />
 
-            <p>
-                <a href="media.xhtml?id=#{tripDetails.trip.id}" class="btn btn-primary btn-large">View Media</a>
-            </p>
-            <a href="upload.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Upload Media</a>
-            <a href="editmedia.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Edit Media</a>
-            <a href="addentry.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Add an entry to the itinerary</a>
-            <a href="accommodations.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Add an accommodation</a>
-            <a href="edittrip.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Edit Trip</a>
+            <a href="viewmap.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">View Map</a>
 
             <h3>#{tripDetails.trip.startLocation} to #{tripDetails.trip.endLocation}, 
                 <h:outputText value="#{tripDetails.trip.startDate}">
@@ -57,14 +50,6 @@
                     <h3>Itinerary</h3>
                     <c:forEach items="#{tripDetails.trip.itineraryCollection}" var="entry">
                         <dl class="dl-horizontal well">
-                            <div style="float:right;">
-                                <h:form>
-                                    <h:commandLink  onclick="return confirm('Are you sure?');" action="#{deleteEntry.submit(entry.id)}">
-                                        <i class="icon-remove"></i>
-                                        <f:param name="id" value="#{param.id}" />
-                                    </h:commandLink>
-                                </h:form>
-                            </div>
                             <dt>Date</dt>
                             <dd>
                                 <h:outputText value="#{entry.date}">
@@ -87,14 +72,6 @@
                     <h3>Accommodations</h3>
                     <c:forEach items="#{tripDetails.trip.accommodationCollection}" var="accommodation">
                         <dl class="dl-horizontal well">
-                            <div style="float:right;">
-                                <h:form>
-                                    <h:commandLink  onclick="return confirm('Are you sure?');" action="#{deleteAccommodation.submit(accommodation.id)}">
-                                        <i class="icon-remove"></i>
-                                        <f:param name="id" value="#{param.id}" />
-                                    </h:commandLink>
-                                </h:form>
-                            </div>
                             <dt>Date</dt>
                             <dd>
                                 <h:outputText value="#{accommodation.checkinTime}">
