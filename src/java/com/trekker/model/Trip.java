@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Trip.list", query = "SELECT t FROM Trip t"),
     @NamedQuery(name = "Trip.findByKeyword", query = "SELECT t FROM Trip t WHERE t.name LIKE :name"),
     @NamedQuery(name = "Trip.findByLocation", query = "SELECT t FROM Trip t WHERE t.startLocation LIKE :location "
-    + "OR t.endLocation LIKE :location")
+    + "OR t.endLocation LIKE :location"),
+    @NamedQuery(name = "Trip.findByDate", query = "SELECT t FROM Trip t WHERE :date >= t.startDate AND :date <= t.endDate")
 })
 public class Trip implements Serializable {
 

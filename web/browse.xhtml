@@ -13,7 +13,7 @@
         <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
         <h:outputStylesheet library="css" name="additional.css" />
         <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:favicon.gif']}"/>
-        
+
         <!-- jquery -->
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
@@ -54,12 +54,14 @@
                                     <h:inputText id="location" class="span12" value="#{searchTrips.location}"/>
 
                                     <label class="spacer">Keyword</label>
-                                    <h:inputText name="keyword" id="keyword" class="span12" value="#{searchTrips.keyword}" />
+                                    <h:inputText id="keyword" class="span12" value="#{searchTrips.keyword}" />
 
                                     <label class="spacer">Date</label>
-                                    <input type="text" id="date" class="datepicker span12" />
-                                    
-                                    <h:commandButton id="search" name="search" class="btn btn-primary spacer" value="Search" action="#{searchTrips.search()}" />
+                                    <h:inputText id="startDate" value="#{searchTrips.date}" class="datepicker span12">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:inputText>
+
+                                    <h:commandButton id="search" class="btn btn-primary spacer" value="Search" action="#{searchTrips.search()}" />
                                 </fieldset>
                             </h:form>
                         </div>
@@ -78,16 +80,16 @@
                                         <a href="trip.xhtml?id=#{trip.id}">
                                             <img src="#{trip.fileUrl}"/>
                                         </a>
-                                            <div class="caption">
+                                        <div class="caption">
                                             <h3>#{trip.name}</h3>
-                                        <p><h:outputText value="#{trip.startDate}">
-                                                <f:convertDateTime dateStyle="short"/>
-                                            </h:outputText> - 
-                                            <h:outputText value="#{trip.endDate}">
-                                                <f:convertDateTime dateStyle="short"/>
-                                            </h:outputText><br/>
-                                            #{trip.startLocation} - #{trip.endLocation}<br/>
-                                            by #{trip.owner.name}</p>
+                                            <p><h:outputText value="#{trip.startDate}">
+                                                    <f:convertDateTime dateStyle="short"/>
+                                                </h:outputText> - 
+                                                <h:outputText value="#{trip.endDate}">
+                                                    <f:convertDateTime dateStyle="short"/>
+                                                </h:outputText><br/>
+                                                #{trip.startLocation} - #{trip.endLocation}<br/>
+                                                by #{trip.owner.name}</p>
                                         </div>
                                     </div>
                                 </li>

@@ -1,6 +1,7 @@
 package com.trekker.service;
 
 import com.trekker.model.Trip;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;
@@ -46,6 +47,12 @@ public class TripService {
     public List<Trip> findByLocation(String location) {
         return em.createNamedQuery("Trip.findByLocation", Trip.class)
                 .setParameter("location", "%" + location + "%")
+                .getResultList();
+    }
+    
+    public List<Trip> findByDate(Date date) {
+        return em.createNamedQuery("Trip.findByDate", Trip.class)
+                .setParameter("date", date)
                 .getResultList();
     }
 }
