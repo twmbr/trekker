@@ -35,7 +35,11 @@
 
             <h:messages globalOnly="true" escape="false" layout="table" />
 
-            <a href="viewmap.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">View Map</a>
+            <p>
+                <a href="media.xhtml?id=#{tripDetails.trip.id}" class="btn btn-primary btn-large">View Media</a>
+                <a href="viewmap.xhtml?id=#{tripDetails.trip.id}" class="btn btn-primary btn-large">View Map</a>
+            </p>
+            
 
             <h3>#{tripDetails.trip.startLocation} to #{tripDetails.trip.endLocation}, 
                 <h:outputText value="#{tripDetails.trip.startDate}">
@@ -67,7 +71,7 @@
                         </dl>
                     </c:forEach>
                 </div>
-                
+
                 <div class="span6">
                     <h3>Accommodations</h3>
                     <c:forEach items="#{tripDetails.trip.accommodationCollection}" var="accommodation">
@@ -80,14 +84,20 @@
                             </dd>
                             <dt>Name</dt>
                             <dd>#{accommodation.name}</dd>
-                            <dt>Check-in Time</dt>
+                            <dt>Check-In</dt>
                             <dd>
+                                <h:outputText value="#{accommodation.checkinTime}">
+                                    <f:convertDateTime dateStyle="short" />
+                                </h:outputText> -
                                 <h:outputText value="#{accommodation.checkinTime}">
                                     <f:convertDateTime pattern="h:mm a" />
                                 </h:outputText>
                             </dd>
-                            <dt>Check-out Time</dt>
+                            <dt>Check-out</dt>
                             <dd>
+                                <h:outputText value="#{accommodation.checkoutTime}">
+                                    <f:convertDateTime dateStyle="short"/>
+                                </h:outputText> -
                                 <h:outputText value="#{accommodation.checkoutTime}">
                                     <f:convertDateTime pattern="h:mm a" />
                                 </h:outputText>
