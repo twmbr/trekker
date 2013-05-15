@@ -13,6 +13,13 @@
         <h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
         <h:outputStylesheet library="css" name="additional.css" />
         <link rel="shortcut icon" type="image/x-icon" href="#{resource['img:favicon.gif']}"/>
+        
+        <!-- jquery -->
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!-- date picker -->
+        <h:outputStylesheet library="css" name="datepicker.css" />
+        <h:outputScript library="js" name="bootstrap-datepicker.js" />
     </h:head>
     <h:body>
         <div class="container">
@@ -50,31 +57,8 @@
                                     <h:inputText name="keyword" id="keyword" class="span12" value="#{searchTrips.keyword}" />
 
                                     <label class="spacer">Date</label>
-                                    <select id="month" name="month" class="span5">
-                                        <option selected="">Month</option>
-                                        <option>Jan</option>
-                                        <option>Feb</option>
-                                        <option>Mar</option>
-                                        <option>Apr</option>
-                                        <option>May</option>
-                                        <option>Jun</option>
-                                        <option>Jul</option>
-                                        <option>Aug</option>
-                                        <option>Sept</option>
-                                        <option>Oct</option>
-                                        <option>Nov</option>
-                                        <option>Dec</option>
-                                    </select>
-                                    <select id="day" name="day" class="span3">
-                                        <option selected="">Day</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                    </select>
-                                    <select id="year" name="year" class="span4">
-                                        <option>Year</option>
-                                        <option>2012</option>
-                                        <option>2011</option>
-                                    </select>
+                                    <input type="text" id="date" class="datepicker span12" />
+                                    
                                     <h:commandButton id="search" name="search" class="btn btn-primary spacer" value="Search" action="#{searchTrips.search()}" />
                                 </fieldset>
                             </h:form>
@@ -127,5 +111,10 @@
             </div>
 
         </div><!--/container-->
+        <script>
+            $('.datepicker').datepicker({
+                format: 'mm/dd/yyyy'
+            });
+        </script>
     </h:body>
 </html>
