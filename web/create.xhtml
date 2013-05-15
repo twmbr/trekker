@@ -122,19 +122,19 @@
                     </div>
 
                     <div class="control-group">
+                        <label class="control-label">Trip Settings</label>
                         <div class="controls">
-                            <input type="button" class="btn btn-primary" value="Create Route" onclick="calcRoute();" />
-                            <h:commandButton value="Save Trip" class="btn btn-primary" ajax="false" action="#{createTrip.submit()}" style="margin-right: 15px; margin-left: 25px;"/>
+                            <h:selectOneMenu id="isPublic" value="#{createTrip.trip.isPublic}" class="span2">
+                                <f:selectItem itemValue="false" itemLabel="Private" />
+                                <f:selectItem itemValue="true" itemLabel="Public" />
+                            </h:selectOneMenu>
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label class="control-label">Trip Settings</label>
                         <div class="controls">
-                            <h:selectOneMenu id="tripSett" name="month" value="#{createTrip.isPrivate}" class="span2">
-                                <f:selectItem itemValue="0" itemLabel="Private" />
-                                <f:selectItem itemValue="1" itemLabel="Public" />
-                            </h:selectOneMenu>
+                            <input type="button" class="btn btn-primary" value="Create Route" onclick="calcRoute();" />
+                            <h:commandButton value="Save Trip" class="btn btn-primary" ajax="false" action="#{createTrip.submit()}" style="margin-right: 15px; margin-left: 25px;"/>
                         </div>
                     </div>
 
