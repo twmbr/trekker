@@ -57,7 +57,7 @@
                     <c:forEach items="#{tripDetails.trip.itineraryCollection}" var="entry">
                         <dl class="dl-horizontal well">
                             <div style="float:right;">
-                                <h:form>
+                                <h:form><small><a href="editentry.xhtml?id=#{entry.id}">Edit</a></small> | 
                                     <h:commandLink  onclick="return confirm('Are you sure?');" action="#{deleteEntry.submit(entry.id)}">
                                         <i class="icon-remove"></i>
                                         <f:param name="id" value="#{param.id}" />
@@ -94,22 +94,22 @@
                                     </h:commandLink>
                                 </h:form>
                             </div>
-                            <dt>Date</dt>
+                            <dt>Name</dt>
+                            <dd>#{accommodation.name}</dd>
+                            <dt>Check-In</dt>
                             <dd>
                                 <h:outputText value="#{accommodation.checkinTime}">
                                     <f:convertDateTime dateStyle="short" />
-                                </h:outputText>
-                            </dd>
-                            <dt>Name</dt>
-                            <dd>#{accommodation.name}</dd>
-                            <dt>Check-in Time</dt>
-                            <dd>
+                                </h:outputText> -
                                 <h:outputText value="#{accommodation.checkinTime}">
                                     <f:convertDateTime pattern="h:mm a" />
                                 </h:outputText>
                             </dd>
-                            <dt>Check-out Time</dt>
+                            <dt>Check-out</dt>
                             <dd>
+                                <h:outputText value="#{accommodation.checkoutTime}">
+                                    <f:convertDateTime dateStyle="short"/>
+                                </h:outputText> -
                                 <h:outputText value="#{accommodation.checkoutTime}">
                                     <f:convertDateTime pattern="h:mm a" />
                                 </h:outputText>
