@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -35,6 +36,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Trip.findByDate", query = "SELECT t FROM Trip t WHERE :date >= t.startDate AND :date <= t.endDate AND t.isPublic = '1'")
 })
 public class Trip implements Serializable {
+    @Lob
+    @Size(max = 65535)
+    @Column(name = "waypoints")
+    private String waypoints;
     @Basic(optional = false)
     @NotNull
     @Column(name = "is_public")
@@ -220,5 +225,13 @@ public class Trip implements Serializable {
 
     public void setIsPublic(boolean isPublic) {
         this.isPublic = isPublic;
+    }
+
+    public String getWaypoints() {
+        return waypoints;
+    }
+
+    public void setWaypoints(String waypoints) {
+        this.waypoints = waypoints;
     }
 }

@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.28)
 # Database: trekker
-# Generation Time: 2013-05-15 22:13:27 +0000
+# Generation Time: 2013-05-15 22:57:36 +0000
 # ************************************************************
 
 
@@ -49,6 +49,7 @@ CREATE TABLE `trip` (
   `end_date` date NOT NULL,
   `start_location` varchar(255) NOT NULL DEFAULT '',
   `end_location` varchar(255) NOT NULL DEFAULT '',
+  `waypoints` text,
   `is_public` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `trip_has_owner` (`owner`),
