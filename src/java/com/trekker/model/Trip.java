@@ -35,6 +35,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Trip.findByDate", query = "SELECT t FROM Trip t WHERE :date >= t.startDate AND :date <= t.endDate")
 })
 public class Trip implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "is_public")
+    private boolean isPublic;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tripId")
     @OrderBy("uploaded")
@@ -208,5 +212,13 @@ public class Trip implements Serializable {
             Media pic = mediaCollection.iterator().next();
             return "uploads/" + this.owner.getId() + "/" + this.id + "/" + pic.getFilename();
         }
+    }
+
+    public boolean getIsPublic() {
+        return isPublic;
+    }
+
+    public void setIsPublic(boolean isPublic) {
+        this.isPublic = isPublic;
     }
 }

@@ -1,13 +1,13 @@
 # ************************************************************
 # Sequel Pro SQL dump
-# Version 4004
+# Version 4096
 #
 # http://www.sequelpro.com/
 # http://code.google.com/p/sequel-pro/
 #
 # Host: localhost (MySQL 5.5.28)
 # Database: trekker
-# Generation Time: 2013-04-24 18:23:13 +0000
+# Generation Time: 2013-05-15 22:13:27 +0000
 # ************************************************************
 
 
@@ -49,6 +49,7 @@ CREATE TABLE `trip` (
   `end_date` date NOT NULL,
   `start_location` varchar(255) NOT NULL DEFAULT '',
   `end_location` varchar(255) NOT NULL DEFAULT '',
+  `is_public` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `trip_has_owner` (`owner`),
   CONSTRAINT `trip_has_owner` FOREIGN KEY (`owner`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -107,7 +108,7 @@ CREATE TABLE `media` (
   `user_id` int(11) unsigned NOT NULL,
   `trip_id` int(11) unsigned NOT NULL,
   `caption` text,
-  `filename` varchar(50) NOT NULL DEFAULT '',
+  `filename` varchar(40) NOT NULL DEFAULT '',
   `uploaded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `media_has_user` (`user_id`),
