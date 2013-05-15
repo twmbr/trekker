@@ -71,9 +71,9 @@
             <div class="row">
                 <div class="span12">
                     <c:forEach items="#{tripDetails.trip.mediaCollection}" var="media">
-                        <a href="uploads/#{currentUser.id}/#{tripDetails.trip.id}/#{media.filename}" rel="group" 
+                        <a href="uploads/#{media.userId.id}/#{tripDetails.trip.id}/#{media.filename}" rel="group" 
                            class="fancybox" title="#{media.caption}">
-                            <img src="uploads/#{currentUser.id}/#{tripDetails.trip.id}/t/#{media.filename}"/>
+                            <img src="uploads/#{media.userId.id}/#{tripDetails.trip.id}/t/#{media.filename}"/>
                         </a>
                     </c:forEach>
                 </div>
