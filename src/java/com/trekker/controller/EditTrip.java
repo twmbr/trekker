@@ -17,9 +17,10 @@ import org.omnifaces.util.Messages;
 import com.trekker.service.TripService;
 import com.trekker.service.UserService;
 import java.util.Collections;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
-@Named
+@ManagedBean
 @SessionScoped
 public class EditTrip implements Serializable{
     @ManagedProperty(value="#{param.id}")
@@ -109,8 +110,22 @@ public class EditTrip implements Serializable{
     
     @PostConstruct
     public void init() {
-        trip = tripService.find(id);
-       // setup();
+        
+        Trip aTrip = new Trip();
+        aTrip = tripService.find(id);
+        trip = new Trip();
+        if(aTrip != null)
+        {
+        name = aTrip.getName();
+          startLoc = aTrip.getStartLocation();
+          endLoc = aTrip.getEndLocation();       
+        startDay = aTrip.getStartDate().getDate();      
+        startMonth = aTrip.getStartDate().getMonth();
+        startYear = aTrip.getStartDate().getYear()+1900;
+        endDay = aTrip.getEndDate().getDate();
+        endMonth = aTrip.getEndDate().getMonth();
+        endYear = aTrip.getEndDate().getYear()+1900;
+        }
     }
     
     public int getId() {
@@ -134,9 +149,12 @@ public class EditTrip implements Serializable{
         trip.setStartDate(startDate);
         trip.setEndDate(endDate);
         this.setWaypoints();
-        tripService.update(trip);
-        
-        
+       
+         Trip aTrip = new Trip();
+        aTrip = tripService.find(id);
+        trip.setOwner(aTrip.getOwner());
+        trip.setId(aTrip.getId());
+         tripService.update(trip);
         Messages.addFlashGlobalInfo("<div class=\"alert alert-success\">Trip successfully created</div>");
         Faces.redirect("profile.xhtml");
     }
@@ -250,16 +268,8 @@ public class EditTrip implements Serializable{
        }
      }
       
-      public void setup(){
-          name = trip.getName();
-          startLoc = trip.getStartLocation();
-          endLoc = trip.getEndLocation();       
-        startDay = trip.getStartDate().getDate();      
-        startMonth = trip.getStartDate().getMonth();
-        startYear = trip.getStartDate().getYear()+1900;
-        endDay = trip.getEndDate().getDate();
-        endMonth = trip.getEndDate().getMonth();
-        endYear = trip.getEndDate().getYear()+1900;
+      public void setup(Trip aTrip){
+         
     
           
       }

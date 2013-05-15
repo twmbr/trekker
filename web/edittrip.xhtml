@@ -51,7 +51,7 @@
                     <div class="control-group">
                         <label for="tripName" class="control-label">Name of Trip</label>
                         <div class="controls">
-                            <h:inputText id="tripName" value="#{editTrip.id}" class="span7"/>
+                            <h:inputText id="tripName" value="#{editTrip.name}" class="span7"/>
                         </div>
                     </div>
                     
@@ -86,7 +86,6 @@
                            <h:commandLink id="Testing3" action="#{editTrip.moveUpWayPoints()}" class="btn btn-primary" style="margin-right: 15px; margin-left: 25px;">Move Up Waypoints</h:commandLink>
                            <h:commandLink id="Testing4" action="#{editTrip.moveDownWayPoints()}" class="btn btn-primary" style="margin-right: 15px; margin-left: 25px;">Move Down Waypoints</h:commandLink>
                           <h:commandLink id="Testing2" action="#{editTrip.removeWayPoints()}" class="btn btn-primary" style="margin-right: 15px; margin-left: 25px;">Remove Waypoints</h:commandLink>
-                         
                         </div> 
                     </div>
                     
@@ -214,7 +213,9 @@
                     <div class="control-group">
                         <div class="controls">
                             <input type="button" class="btn btn-primary" value="Create Route" onclick="calcRoute();" />
-                            <h:commandButton value="Save Trip" class="btn btn-primary" ajax="false" action="#{editTrip.submit}" style="margin-right: 15px; margin-left: 25px;"/>
+                            <h:commandButton value="Save Trip" class="btn btn-primary" ajax="false" action="#{editTrip.submit}" style="margin-right: 15px; margin-left: 25px;">
+                                <f:param name ="id" value="#{param.id}"/>
+                            </h:commandButton>
                         </div>
                     </div>
                     
