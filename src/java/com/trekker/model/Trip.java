@@ -28,11 +28,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "trip")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Trip.list", query = "SELECT t FROM Trip t"),
-    @NamedQuery(name = "Trip.findByKeyword", query = "SELECT t FROM Trip t WHERE t.name LIKE :name"),
-    @NamedQuery(name = "Trip.findByLocation", query = "SELECT t FROM Trip t WHERE t.startLocation LIKE :location "
-    + "OR t.endLocation LIKE :location"),
-    @NamedQuery(name = "Trip.findByDate", query = "SELECT t FROM Trip t WHERE :date >= t.startDate AND :date <= t.endDate")
+    @NamedQuery(name = "Trip.list", query = "SELECT t FROM Trip t WHERE t.isPublic = '1'"),
+    @NamedQuery(name = "Trip.findByKeyword", query = "SELECT t FROM Trip t WHERE t.name LIKE :name AND t.isPublic = '1'"),
+    @NamedQuery(name = "Trip.findByLocation", query = "SELECT t FROM Trip t WHERE (t.startLocation LIKE :location "
+    + "OR t.endLocation LIKE :location) AND t.isPublic = '1'"),
+    @NamedQuery(name = "Trip.findByDate", query = "SELECT t FROM Trip t WHERE :date >= t.startDate AND :date <= t.endDate AND t.isPublic = '1'")
 })
 public class Trip implements Serializable {
     @Basic(optional = false)
