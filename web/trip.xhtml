@@ -58,9 +58,10 @@
                     <c:forEach items="#{tripDetails.trip.itineraryCollection}" var="entry">
                         <dl class="dl-horizontal well">
                             <div style="float:right;">
-                                <h:form><small><a href="editentry.xhtml?id=#{entry.id}">Edit</a></small> | 
+                                <h:form>
+                                    <a href="editentry.xhtml?id=#{entry.id}" title="Edit"><i class="icon-edit"/></a>
                                     <h:commandLink  onclick="return confirm('Are you sure?');" action="#{deleteEntry.submit(entry.id)}">
-                                        <i class="icon-remove"></i>
+                                        <i class="icon-remove" title="Delete"></i>
                                         <f:param name="id" value="#{param.id}" />
                                     </h:commandLink>
                                 </h:form>
@@ -89,8 +90,9 @@
                         <dl class="dl-horizontal well">
                             <div style="float:right;">
                                 <h:form>
+                                    <a href="editaccommodation.xhtml?id=#{accommodation.id}" title="Edit"><i class="icon-edit"/></a>
                                     <h:commandLink  onclick="return confirm('Are you sure?');" action="#{deleteAccommodation.submit(accommodation.id)}">
-                                        <i class="icon-remove"></i>
+                                        <i class="icon-remove" title="Delete"></i>
                                         <f:param name="id" value="#{param.id}" />
                                     </h:commandLink>
                                 </h:form>
