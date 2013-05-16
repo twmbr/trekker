@@ -43,7 +43,8 @@
             <a href="addentry.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Add an entry to the itinerary</a>
             <a href="accommodations.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Add an accommodation</a>
             <a href="edittrip.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">Edit Trip</a>
-
+            <a href="viewtrip.xhtml?id=#{tripDetails.trip.id}" class="btn btn-medium">View Trip</a>
+            
             <h3>#{tripDetails.trip.startLocation} to #{tripDetails.trip.endLocation}, 
                 <h:outputText value="#{tripDetails.trip.startDate}">
                     <f:convertDateTime dateStyle="short"/>
