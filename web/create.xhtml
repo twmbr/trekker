@@ -97,9 +97,9 @@
                     <div class="control-group">
                         <span class="control-label"></span>
                         <div class="controls form-inline">
-                            <input type="button" class="btn btn-primary" value="Move Waypoint Up" onclick="moveUpWayPointAddress()" style="margin-right: 15px; margin-left: 25px;"/>
-                            <input type="button" class="btn btn-primary" value="Move Waypoint Down" onclick="moveDownWayPointAddress()" style="margin-right: 15px; margin-left: 25px;"/>
-                            <input type="button" class="btn btn-primary" value="Remove Waypoint" onclick="removeWayPointAddress()" style="margin-right: 15px; margin-left: 25px;"/>
+                            <h:commandLink id="Testing3" action="#{createTrip.moveUpWayPoints()}" class="btn btn-primary" style="margin-right: 15px; margin-left: 25px;">Move Up Waypoints</h:commandLink>
+                            <h:commandLink id="Testing4" action="#{createTrip.moveDownWayPoints()}" class="btn btn-primary" style="margin-right: 15px; margin-left: 25px;">Move Down Waypoints</h:commandLink>
+                            <h:commandLink id="Testing2" action="#{createTrip.removeWayPoints()}" class="btn btn-primary" style="margin-right: 15px; margin-left: 25px;">Remove Waypoints</h:commandLink>
                         </div> 
                     </div>
 

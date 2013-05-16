@@ -2,61 +2,71 @@ package com.trekker.controller;
 
 import com.trekker.model.Trip;
 import com.trekker.model.User;
-import com.trekker.service.UserService;
+import com.trekker.service.TripService;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
-@Named
+@ManagedBean
 @SessionScoped
-public class CreateTrip implements Serializable {
+public class EditTrip implements Serializable {
+    @ManagedProperty(value = "#{param.id}")
+    private int id;
+    private String name = "";
+    private String startLoc = "";
     private Trip trip;
     private User user;
-
+    @EJB
+    private TripService tripService;
+    private String endLoc = "";
+    private Date startDate;
+    private Date endDate;
+    private boolean isPublic;
     private int addIndex = 0;
     private String temp = "";
     private String tempStore = "";
     private ArrayList<String> selectedItems = new ArrayList<String>();
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public boolean getIsPublic() {
+        return isPublic;
+    }
+
+    public void setIsPublic(boolean isPublic) {
+        this.isPublic = isPublic;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
     private ArrayList<String> waypoints1 = new ArrayList<String>();
 
-    @EJB
-    private UserService userService;
-
-    @PostConstruct
-    public void init() {
-        trip = new Trip();
-        user = userService.currentUser();
+    public String getStartLoc() {
+        return startLoc;
     }
 
-    public void submit() throws IOException {
-        this.setWaypoints();
-        trip.setWaypoints(temp);
-
-        trip.setOwner(user);
-        Collection<Trip> trips = user.getTrips();
-        trips.add(trip);
-        user.setTrips(trips);
-        userService.update(user);
-        trip = new Trip();
-        temp = "";
-        tempStore = "";
-        waypoints1 = new ArrayList<String>();
-        addIndex = 0;
-
-        Messages.addFlashGlobalInfo("<div class=\"alert alert-success\">Trip successfully created</div>");
-        Faces.redirect("profile.xhtml");
+    public void setStartLoc(String startLoc) {
+        this.startLoc = startLoc;
     }
 
-    public Trip getTrip() {
-        return trip;
+    public String getEndLoc() {
+        return endLoc;
+    }
+
+    public void setEndLoc(String endLoc) {
+        this.endLoc = endLoc;
     }
 
     public ArrayList<String> getSelectedItems() {
@@ -77,6 +87,73 @@ public class CreateTrip implements Serializable {
 
     public ArrayList<String> getWaypoints1() {
         return waypoints1;
+    }
+
+    public void setWaypoints1(ArrayList<String> waypoints1) {
+        this.waypoints1 = waypoints1;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @PostConstruct
+    public void init() {
+
+        Trip aTrip = new Trip();
+        aTrip = tripService.find(id);
+        trip = new Trip();
+        if (aTrip != null) {
+            name = aTrip.getName();
+            startLoc = aTrip.getStartLocation();
+            endLoc = aTrip.getEndLocation();
+            startDate = aTrip.getStartDate();
+            endDate = aTrip.getEndDate();
+            isPublic = aTrip.getIsPublic();
+        }
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void submit() throws IOException {
+        trip.setName(name);
+        trip.setStartLocation(startLoc);
+        trip.setEndLocation(endLoc);
+        this.setWaypoints();
+        trip.setWaypoints(name);
+        trip.setStartDate(startDate);
+        trip.setEndDate(endDate);
+        trip.setIsPublic(isPublic);
+
+        Trip aTrip = new Trip();
+        aTrip = tripService.find(id);
+        trip.setOwner(aTrip.getOwner());
+        trip.setId(aTrip.getId());
+        tripService.update(trip);
+        Messages.addFlashGlobalInfo("<div class=\"alert alert-success\">Trip successfully created</div>");
+        Faces.redirect("profile.xhtml");
     }
 
     public void setWaypoints() {
